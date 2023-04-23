@@ -1,8 +1,47 @@
-\documentclass{book}
+\documentclass[12pt, a4paper]{book}
+\usepackage{graphicx} % Include figure files
+\usepackage{lipsum}
+\usepackage{biblatex}
+\usepackage{emptypage}
+\usepackage[skip=20pt plus1pt, indent=30pt]{parskip}
+\addbibresource{references.bib}
+
+\usepackage{hyperref}  % contents hyperlinks setup
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+
+\usepackage[top=2.5cm,bottom=2.5cm,right=2.5cm,left=2.5cm]{geometry}
+
+\newenvironment{dedication}
+  {\thispagestyle{empty}% no header and footer
+   \vspace*{\stretch{1}}% some space at the top
+   \itshape             % italics
+   \raggedleft          % flush to the right margin
+  }
+  {\par % end the paragraph
+   \vspace{\stretch{3}} % space at bottom is three times that at the top
+   \clearpage           % finish off the page
+  }
+
 \begin{document}
 \frontmatter
 \input{pages/cover.tex}
+\input{pages/dedication.tex}
 \input{pages/acknowledgment.tex}
-\mainmatter
+\input{pages/abstract.tex}
 \tableofcontents
+
+\mainmatter
+\input{pages/introduction.tex}
+\input{chapters/chapter1.tex}
+\input{chapters/chapter2.tex}
+\input{chapters/chapter3.tex}
+\input{chapters/chapter4.tex}
+\printbibliography
 \end{document}
