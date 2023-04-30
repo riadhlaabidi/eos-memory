@@ -1,0 +1,35 @@
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{graphicx} % Include figure files
+\usepackage{blindtext}
+\usepackage{biblatex}
+\usepackage{emptypage}
+\usepackage[top=2.5cm,bottom=2.5cm,right=2.5cm,left=2.5cm]{geometry}
+\usepackage[skip=20pt plus1pt, indent=30pt]{parskip}
+\addbibresource{references.bib}
+
+\usepackage{hyperref}  % contents hyperlinks setup
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\newenvironment{dedication}
+  {\thispagestyle{empty}% no header and footer
+   \vspace*{\stretch{1}}% some space at the top
+   \itshape             % italics
+   \raggedleft          % flush to the right margin
+  }
+  {\par % end the paragraph
+   \vspace{\stretch{3}} % space at bottom is three times that at the top
+   %\clearpage           % finish off the page
+  }
+
+\usepackage{tocbibind} % add bibliography, contents, tables to table of contents
+
+\usepackage[toc, acronym, nonumberlist, nomain]{glossaries}
+\makeglossaries
+\input{pages/acronyms.tex}
