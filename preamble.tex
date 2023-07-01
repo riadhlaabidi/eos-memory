@@ -1,16 +1,27 @@
 \usepackage[english]{babel}
+
+\usepackage[
+  top=2.5cm,
+  bottom=2.5cm,
+  right=2cm,
+  left=3cm,
+]{geometry}
+
+\usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \fancyhead{} % clear all header fields
+    \fancyhead[RO,LE]{\small\leftmark}
+    \fancyfoot{} % clear all footer fields
+    \fancyfoot[C]{\thepage}
+
+
 \usepackage{csquotes}
 \usepackage{graphicx} % Include figure files
 \usepackage{blindtext}
 \usepackage{biblatex}
 \usepackage{emptypage}
-\usepackage[top=2.5cm,bottom=2.5cm,right=2.5cm,left=2.5cm]{geometry}
-\usepackage[skip=20pt plus1pt, indent=30pt]{parskip}
-\addbibresource{references.bib}
 
-% \usepackage{indentfirst}
-
-
+\usepackage{titlesec}
 \usepackage{hyperref}  % contents hyperlinks setup
 \hypersetup{
     colorlinks,
@@ -19,6 +30,33 @@
     linkcolor=black,
     urlcolor=black
 }
+
+\usepackage{tabularx}
+\renewcommand\arraystretch{1.5}
+
+\usepackage{enumitem}
+
+\titlespacing*{\section}
+{0pt}{2\baselineskip}{1\baselineskip}
+\titlespacing*{\subsection}
+{0pt}{2\baselineskip}{1\baselineskip}
+\titlespacing*{\subsubsection}
+{0pt}{2\baselineskip}{1\baselineskip}
+
+\usepackage[skip=20pt plus1pt, indent=30pt]{parskip}
+
+\addbibresource{references.bib}
+
+% \usepackage{indentfirst}
+
+\renewcommand\thechapter{\Roman{chapter}}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+\graphicspath{ {images/} }
+\usepackage[belowskip=6pt]{caption}
+
+
 
 \newenvironment{dedication}
   {\thispagestyle{empty}% no header and footer
@@ -31,7 +69,7 @@
    %\clearpage           % finish off the page
   }
 
-\usepackage{tocbibind} % add bibliography, contents, tables to table of contents
+\usepackage[]{tocbibind} % add bibliography, contents, tables to table of contents
 
 \usepackage[toc, acronym, nonumberlist, nomain]{glossaries}
 \makeglossaries
