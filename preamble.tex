@@ -3,8 +3,9 @@
 \usepackage[
   top=2.5cm,
   bottom=2.5cm,
-  right=2cm,
-  left=3cm,
+  right=2.5cm,
+  left=2.5cm,
+  % showframe
 ]{geometry}
 
 \usepackage{fancyhdr}
@@ -17,8 +18,7 @@
 
 \usepackage{csquotes}
 \usepackage{graphicx} % Include figure files
-\usepackage{blindtext}
-\usepackage{biblatex}
+\usepackage{svg}
 \usepackage{emptypage}
 
 \usepackage{titlesec}
@@ -47,7 +47,9 @@
 
 \usepackage[skip=20pt plus1pt, indent=30pt]{parskip}
 
+\usepackage{biblatex}
 \addbibresource{references.bib}
+\usepackage[]{tocbibind} % add bibliography, contents, tables to table of contents
 
 % \usepackage{indentfirst}
 
@@ -57,9 +59,7 @@
 
 \graphicspath{ {images/} }
 \usepackage[belowskip=6pt]{caption}
-
-
-
+  
 \newenvironment{dedication}
   {\thispagestyle{empty}% no header and footer
    \vspace*{\stretch{1}}% some space at the top
@@ -70,8 +70,6 @@
    \vspace{\stretch{3}} % space at bottom is three times that at the top
    %\clearpage           % finish off the page
   }
-
-\usepackage[]{tocbibind} % add bibliography, contents, tables to table of contents
 
 \usepackage[toc, acronym, nonumberlist, nomain]{glossaries}
 \makeglossaries

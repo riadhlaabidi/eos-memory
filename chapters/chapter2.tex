@@ -1,4 +1,4 @@
-\chapter{Spint 0: Requirements gathering and Specification}
+\chapter{Sprint 0: Requirements gathering and Specification}
 
 \phantomsection
 \section*{Introduction}
@@ -106,107 +106,164 @@ its effectiveness, reliability, and scalability. Here are the key requirements t
     allow customization of user preferences to provide a personalized experience.
 \end{itemize}
 
-\section{Specification}
+\section{Scrum implementation overview}
 \label{spec}
-In this section, we specify the system's requirements to lay the foundation for the development 
-and implementation process and ensure that the final product meets the desired objectives.
+This section provides an overview of the Scrum implementation in our project It includes a global use case diagram, showcasing the system's 
+high-level functionalities, followed by the presentation of the product backlog and the planning 
+of the sprints.
 
 \subsection{Global use case diagram}
 Using \acrshort{uml} use case diagrams to model the requirements allows for a visual representation 
 of the interactions between actors and the system, providing a clear and concise way to specify 
 the functionalities and behaviors expected from the product.
 
-The figure \ref{g-usecase} illustrates the global use case diagram we modeled for our notification system:
+The figure \ref{g-usecase} illustrates the global use case diagram we modeled for our notification system: \\
 
-\begin{figure}[h!]
+\begin{figure}[hbt!]
     \centering
-    \includegraphics[width=\linewidth]{global-usecase.png}
+    \includesvg[]{images/usecase/global}
     \caption{Notification Center global use case diagram}
     \label{g-usecase}
 \end{figure}
 
 \subsection{Product backlog}
+The Product Backlog serves as a dynamic and living artifact that captures and organizes the 
+ever-evolving list of features, functionalities, and enha   ncements desired for a software product.
 
-\begin{longtable}{ | m{0.18\textwidth}  | m{0.49\textwidth} | c | c | }
+\begin{itemize}
+    \item \textbf{Epic:} Is a large body of work that can be broken down into a number of smaller stories.
+    \item \textbf{User story:} Is an informal, general explanation of a software feature written from the 
+    perspective of the end user or customer, in the form of: \\ “As a [persona], I [want to], [so that].”
+    \item \textbf{Estimation:} An estimate of the overall effort required to fully implement a product 
+    backlog item or any other piece of work, in our case we used the number of working hours. \\
+\end{itemize}
+
+\begin{longtable}{ | m{0.18\textwidth}  | m{0.6\textwidth} | c | }
         \hline
-        \textbf{Epic} & \textbf{User story} & \textbf{Priority} & \textbf{Duration} \\
+        \textbf{Epic} & \textbf{User story} & \textbf{Estimation} \\
         \hline
         \endfirsthead
         \hline
-        \textbf{Epic} & \textbf{User story} & \textbf{Priority} & \textbf{Duration} \\
+        \textbf{Epic} & \textbf{User story} & \textbf{Estimation} \\
         \hline  
         \endhead
         \hline
         \endfoot
         \endlastfoot
-        \multirow{2}{5em}{Authentication} & As a new user, I want to be able to create an account so that I can use the notification center. & Must & 16 \\
-        \cline{2-4}
-        & As a registered user, I want to be able to log into my account securely using my email and password. & Must & 16 \\
+        \multirow{2}{5em}{Authentication} & As a new user, I want to be able to create an account so that I can use the notification center. & 16 \\
+        \cline{2-3}
+        & As a registered user, I want to be able to log into my account securely using my email and password. & 16 \\
         \hline
-        \multirow{4}{5em}{Agents management} & As an administrator, I want to be able to create agents so that I can add them to the notification center. & Must & 16 \\
-        \cline{2-4}
-        & As an administrator, I want to be able to list agents so that I can view all registered agents. & Must & 16 \\
-        \cline{2-4}
-        & As an administrator, I want to be able to edit agents so that I can modify their information. & Must & 8 \\
-        \cline{2-4}
-        & As an administrator, I want to be able to delete agents so that I can get rid of no longer needed agents. & Must & 8 \\
+        \multirow{4}{5em}{Agents management} & As an administrator, I want to be able to create agents so that I can add them to the notification center. & 16 \\
+        \cline{2-3}
+        & As an administrator, I want to be able to list agents so that I can view all registered agents. & 16 \\
+        \cline{2-3}
+        & As an administrator, I want to be able to edit agents so that I can modify their information. & 8 \\
+        \cline{2-3}
+        & As an administrator, I want to be able to delete agents so that I can get rid of no longer needed agents. & 8 \\
         \hline
-        \multirow{4}{5em}{Users management} & As an administrator/agent, I want to be able to create users so that I can send them notifications. & Must & 16 \\
-        \cline{2-4}
-        & As an administrator/agent, I want to be able to list users so that I can view all created users. & Must & 16 \\
-        \cline{2-4}
-        & As an administrator/agent, I want to be able to edit users so that I can modify their information. & Must & 8 \\
-        \cline{2-4}
-        &  As an administrator/agent, I want to be able to delete users so that I can get rid of no longer needed users. & Must & 8 \\
+        \multirow{4}{5em}{Users management} & As an administrator/agent, I want to be able to create users so that I can send them notifications. & 16 \\
+        \cline{2-3}
+        & As an administrator/agent, I want to be able to list users so that I can view all created users. & 16 \\
+        \cline{2-3}
+        & As an administrator/agent, I want to be able to edit users so that I can modify their information. & 8 \\
+        \cline{2-3}
+        &  As an administrator/agent, I want to be able to delete users so that I can get rid of no longer needed users. & 8 \\
         \hline
-        \multirow{4}{5em}{Audience management} & As an administrator/agent, I want to be able to create an audience so that I can target specific individuals based on a criteria. & Must & 24 \\
-        \cline{2-4}
-        & As an administrator/agent, I want to be able to list audiences so that I can view all created segments. & Must & 16 \\
-        \cline{2-4}
-        & As an administrator/agent, I want to be able to edit an audience so that I can change selection criteria and segment configurations. & Must & 8 \\
-        \cline{2-4}
-        & As an administrator/agent, I want to be able to delete a group of users so that I can get rid of no longer needed groups.. & Must & 8 \\
+        \multirow{4}{5em}{Audience management} & As an administrator/agent, I want to be able to create an audience so that I can target specific individuals based on a criteria. & 24 \\
+        \cline{2-3}
+        & As an administrator/agent, I want to be able to list audiences so that I can view all created segments. & 16 \\
+        \cline{2-3}
+        & As an administrator/agent, I want to be able to edit an audience so that I can change selection criteria and segment configurations. & 8 \\
+        \cline{2-3}
+        & As an administrator/agent, I want to be able to delete a group of users so that I can get rid of no longer needed groups.. & 8 \\
         \hline
-        \multirow{4}{5em}{Notification channels management} & As an administrator/agent, I want to be able to create notification channels so that I can send notifications through these channels. & Must & 32 \\
-        \cline{2-4}
-        & As an administrator/agent, I want to be able to list notification channels so that I can view all created channels. & Must & 16 \\
-        \cline{2-4}
-        & As an administrator, I want to be able to edit notification channels so that I can modify or update their configurations. & Must & 8 \\
-        \cline{2-4}
-        & As an administrator/agent, I want to be able to delete notification channels so that I can get rid of no longer used channels. & Must & 8 \\
+        \multirow{4}{5em}{Notification channels management} & As an administrator/agent, I want to be able to create notification channels so that I can send notifications through these channels. & 32 \\
+        \cline{2-3}
+        & As an administrator/agent, I want to be able to list notification channels so that I can view all created channels. & 16 \\
+        \cline{2-3}
+        & As an administrator, I want to be able to edit notification channels so that I can modify or update their configurations. & 8 \\
+        \cline{2-3}
+        & As an administrator/agent, I want to be able to delete notification channels so that I can get rid of no longer used channels. & 8 \\
         \hline
-        \multirow{4}{5em}{Notification templates management} & As an agent, I want to be able to add notification templates so that I can send notifications based on that template. & Must & 24 \\
-        \cline{2-4}
-        & As an agent, I want to be able to list notification templates so that I can view all created templates. & Must & 16 \\
-        \cline{2-4}
-        & As an agent, I want to be able to edit notification templates so that I can keep them up to date. & Must & 8 \\
-        \cline{2-4}
-        & As an agent, I want to be able to delete templates so that I can get rid of no longer used templates. & Must & 8 \\
+        \multirow{4}{5em}{Notification templates management} & As an agent, I want to be able to add notification templates so that I can send notifications based on that template. & 24 \\
+        \cline{2-3}
+        & As an agent, I want to be able to list notification templates so that I can view all created templates. & 16 \\
+        \cline{2-3}
+        & As an agent, I want to be able to edit notification templates so that I can keep them up to date. & 8 \\
+        \cline{2-3}
+        & As an agent, I want to be able to delete templates so that I can get rid of no longer used templates. & 8 \\
         \hline
-        Notification Preferences Management & As a user, I want to be able to set my notification preferences, so that I can receive notifications from the channels I want. & Must & 16 \\
+        Notification preferences management & As a user, I want to be able to set my notification preferences, so that I can receive notifications from the channels I want. & 16 \\
         \hline
-        \multirow{4}{5em}{Notification triggers management} & As an agent, I want to be able to create triggers for notifications so that I can schedule notifications to be sent automatically. & Must & 32 \\
-        \cline{2-4}
-        & As an agent, I want to be able to list triggers for notifications so that I can view all created triggers. & Must & 16 \\
-        \cline{2-4}
-        & As an agent, I want to be able to edit notifications triggers so that I can modify or update its configurations. & Must & 8 \\
-        \cline{2-4}
-        & As an agent, I want to be able to delete notification triggers so that I can get rid of outdated and no longer used triggers. & Must & 8 \\
+        \pagebreak
+        \multirow{4}{5em}{Notification triggers management} & As an agent, I want to be able to create triggers for notifications so that I can schedule notifications to be sent automatically. & 32 \\
+        \cline{2-3}
+        & As an agent, I want to be able to list triggers for notifications so that I can view all created triggers. & 16 \\
+        \cline{2-3}
+        & As an agent, I want to be able to edit notifications triggers so that I can modify or update its configurations. & 8 \\
+        \cline{2-3}
+        & As an agent, I want to be able to delete notification triggers so that I can get rid of outdated and no longer used triggers. & 8 \\
         \hline
-        \multirow{4}{5em}{Notification History} & As a user, I want to be able to list notification history so that I can review my received notifications whenever I want. & Must & 16 \\
-        \cline{2-4}
-        & As an administrator/agent, I want to be able to list sent notification logs so that I can review all sent notifications. & Must & 16 \\   
+        \multirow{4}{5em}{Notification history} & As a user, I want to be able to list notification history so that I can review my received notifications whenever I want. & 16 \\
+        \cline{2-3}
+        & As an administrator/agent, I want to be able to list sent notification logs so that I can review all sent notifications. & 16 \\   
         \hline
-        Dashboard & As an administrator/agent I want to be able to view metrics on my dashboard so that I can get an overview on important statistics related to notification activities. & Must & 16 \\
+        Dashboard & As an administrator/agent I want to be able to view metrics on my dashboard so that I can get an overview on important statistics related to notification activities. & 16 \\
         \hline
-        \caption{Backlog table}
+        \caption{Product backlog}
 \end{longtable}
 
-\subsection{Sprints scheduling}
+\subsection{Releases and sprints planning}
+A release refers to the deployment of a specific version or update of a software product. It involves meticulous planning 
+and coordination to ensure successful delivery. 
 
+In the following table, we present the detailed planning of the releases, outlining the sprints included in each release, 
+and the epics included in each sprint. \\
+
+\begin{table}[hbt!]
+    \begin{tabular}{ | m{0.25\textwidth} | m{0.25\textwidth} | m{0.42\textwidth} | }
+        \hline
+        \textbf{Release} & \textbf{Sprints} & \textbf{Epics} \\
+        \hline
+        \multirow{2}{5em}{Release 1} 
+            & \multirow{3}{5em}{Sprint 1} & Authentication \\
+            \cline{3-3}
+            & & Agents management \\
+            \cline{3-3}
+            & & Users management \\
+            \cline{2-3}
+
+            & \multirow{2}{5em}{Sprint 2} & Audiences management \\
+            \cline{3-3}
+            & & Notification channels management \\
+        \hline
+        \multirow{2}{5em}{Release 2} & \multirow{2}{5em}{Sprint 3} & Notification templates management \\
+        \cline{3-3}
+        & & Notification preferences management \\
+        \cline{2-3}
+        & \multirow{3}{5em}{Sprint 4} & Notification triggers management \\
+        \cline{3-3}
+        & & Notification history \\
+        \cline{3-3}
+        & & Dashboard \\
+        \hline
+    \end{tabular}
+    \caption{Releases and sprints planning}
+    \label{tab:planning}
+\end{table}
+
+\section{Development infrastructure}
+
+\pagebreak
 \phantomsection
 \section*{Summary}
 \addcontentsline{toc}{section}{Summary}
-In this chapter, we translated requirements into specifications, encompassing the creation of use cases,
-user stories, and a prioritized product backlog, ultimately setting the stage for subsequent phases 
-of development.
+In this chapter we laid the groundwork for the project by comprehensively gathering and analyzing 
+the requirements. By identifying end-users, defining functional and non-functional requirements, 
+and creating a clear specification through use case diagrams, elaborating the product backlog, 
+and planning sprints, we have set the stage for the subsequent phases of development. 
+
+The insights gained from this chapter will prove invaluable in ensuring the successful implementation 
+of the project and the satisfaction of the end-users. In the following chapter, we will start executing 
+our project providing the practical realization of the initial release.
