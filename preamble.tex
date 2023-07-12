@@ -8,12 +8,13 @@
   % showframe
 ]{geometry}
 
+
 \usepackage{fancyhdr}
-    \pagestyle{fancy}
-    \fancyhead{} % clear all header fields
-    \fancyhead[RO,LE]{\small\leftmark}
-    \fancyfoot{} % clear all footer fields
-    \fancyfoot[C]{\thepage}
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[RO,LE]{\small\leftmark}
+\fancyfoot{} % clear all footer fields
+\fancyfoot[C]{\thepage}
 
 
 \usepackage{csquotes}
@@ -24,11 +25,11 @@
 \usepackage{titlesec}
 \usepackage{hyperref}  % contents hyperlinks setup
 \hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    urlcolor=black
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=black
 }
 
 \usepackage{longtable}
@@ -58,18 +59,18 @@
 \setcounter{tocdepth}{3}
 
 \graphicspath{ {images/} }
-\usepackage[belowskip=6pt]{caption}
-  
+\usepackage{caption}
+
 \newenvironment{dedication}
-  {\thispagestyle{empty}% no header and footer
-   \vspace*{\stretch{1}}% some space at the top
-   \itshape             % italics
-   \raggedleft          % flush to the right margin
-  }
-  {\par % end the paragraph
-   \vspace{\stretch{3}} % space at bottom is three times that at the top
-   %\clearpage           % finish off the page
-  }
+{\thispagestyle{empty}% no header and footer
+  \vspace*{\stretch{1}}% some space at the top
+  \itshape             % italics
+  \raggedleft          % flush to the right margin
+}
+{\par % end the paragraph
+  \vspace{\stretch{3}} % space at bottom is three times that at the top
+  %\clearpage           % finish off the page
+}
 
 \usepackage[toc, acronym, nonumberlist, nomain]{glossaries}
 \makeglossaries

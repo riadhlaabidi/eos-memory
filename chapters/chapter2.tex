@@ -3,40 +3,40 @@
 \phantomsection
 \section*{Introduction}
 \addcontentsline{toc}{section}{Introduction}
-In this chapter, we place significant focus on gathering requirements and transforming them 
-into well-defined and documented specifications. This includes creating use cases and user stories, 
-which provide valuable insights into system interactions and user workflows. Furthermore, we establish 
-a prioritized product backlog, ensuring efficient resource allocation and timely delivery of the most 
-critical and valuable features. 
+In this chapter, we place significant focus on gathering requirements and transforming them
+into well-defined and documented specifications. This includes creating use cases and user stories,
+which provide valuable insights into system interactions and user workflows. Furthermore, we establish
+a prioritized product backlog, ensuring efficient resource allocation and timely delivery of the most
+critical and valuable features.
 
 \section{Requirements gathering}
-By conducting a comprehensive analysis of the requirements, we aim to bridge the gap between 
-the stakeholders' vision and the actual implementation of the product or system. 
-This analysis helps us define clear and concise specifications that serve as the foundation for the design, 
+By conducting a comprehensive analysis of the requirements, we aim to bridge the gap between
+the stakeholders' vision and the actual implementation of the product or system.
+This analysis helps us define clear and concise specifications that serve as the foundation for the design,
 development, and testing phases of the project.
 
 \subsection{Identifying end-users}
-Identifying end-users is a crucial step in requirements analysis as it helps determine the needs, 
-expectations, and constraints of the target audience. In our application, we were able to identify 
+Identifying end-users is a crucial step in requirements analysis as it helps determine the needs,
+expectations, and constraints of the target audience. In our application, we were able to identify
 three types of actors:
 
 \begin{itemize}
-    \item \textbf{Administrator}: Is responsible for overseeing user accounts, configuring and maintaining the 
-    resources needed by agents or employees to ensure the smooth operation of the system inside the organization.
-    
-    \item \textbf{Agent}: Is an employee inside the organization in charge of executing actions on the 
-    notification center: creating and scheduling notification campaigns including the creation of
-    notification content, client base segmentation. 
+      \item \textbf{Administrator}: Is responsible for overseeing user accounts, configuring and maintaining the
+            resources needed by agents or employees to ensure the smooth operation of the system inside the organization.
 
-    \item \textbf{Client}: Is a customer who is going to be targeted by notifications from the business 
-    or organization they belong to. A customer should be able to receive notifications and set their 
-    preferences for receiving notifications from that business. 
+      \item \textbf{Agent}: Is an employee inside the organization in charge of executing actions on the
+            notification center: creating and scheduling notification campaigns including the creation of
+            notification content, client base segmentation.
+
+      \item \textbf{Client}: Is a customer who is going to be targeted by notifications from the business
+            or organization they belong to. A customer should be able to receive notifications and set their
+            preferences for receiving notifications from that business.
 \end{itemize}
 
 \subsection{Functional requirements}
 \label{freq}
-Functional requirements define the specific actions, tasks, and behaviors that the product 
-must be able to perform in order to meet the needs of its end-users. These requirements 
+Functional requirements define the specific actions, tasks, and behaviors that the product
+must be able to perform in order to meet the needs of its end-users. These requirements
 form the foundation of the system's functionality.
 
 The functional requirements we captured for each actor in are outlined below.
@@ -44,11 +44,11 @@ The functional requirements we captured for each actor in are outlined below.
 \paragraph{Authentication and Profile settings}
 \label{common-req}
 \begin{itemize}
-    \item \textbf{Sign in:} A registered user should be able to access the system by providing 
-    valid credentials.
-    \item \textbf{Edit profile settings:} A logged in user should be able to edit his profile settings.
-    \item \textbf{View statistics:} A logged in user should be able to view notification activity metrics 
-    on his dashboard.
+      \item \textbf{Sign in:} A registered user should be able to access the system by providing
+            valid credentials.
+      \item \textbf{Edit profile settings:} A logged in user should be able to edit his profile settings.
+      \item \textbf{View statistics:} A logged in user should be able to view notification activity metrics
+            on his dashboard.
 \end{itemize}
 \raggedbottom
 
@@ -56,201 +56,200 @@ The functional requirements we captured for each actor in are outlined below.
 \paragraph{Administrator requirements}
 \label{admin-req}
 \begin{itemize}
-    \item \textbf{Manage agents:} An administrator should be able to add new agents, update,
-    delete, desactivate accounts and reset passwords for existing agents.
-    \item \textbf{Manage channels:} An administrator should be able to create new notification channels,
-    update, delete, configure service providers for existing channels.
-    \item \textbf{Manage topics:} An administrator should be able to create new notification topics,
-    update, delete and configure topic's priority for existing ones.
+      \item \textbf{Manage agents:} An administrator should be able to add new agents, update,
+            delete, desactivate accounts and reset passwords for existing agents.
+      \item \textbf{Manage channels:} An administrator should be able to create new notification channels,
+            update, delete, configure service providers for existing channels.
+      \item \textbf{Manage topics:} An administrator should be able to create new notification topics,
+            update, delete and configure topic's priority for existing ones.
 \end{itemize}
 
 
 \paragraph{Agent requirements}
 \label{agent-req}
 \begin{itemize}
-    \item \textbf{Manage templates:} An agent should be able to create new notification templates, update and
-    delete existing ones.
-    \item \textbf{Manage triggers:} An agent should be able to create new notification triggers, configure
-    the target audience the scheduling, update, change status and delete existing triggers.
-    \item \textbf{Manage audiences:} An agent should be able create new segments of users based on a
-    criteria, update and delete existing ones.
-    \item \textbf{View logs:} An agent should be able to view logs of sent notifications and their statuses.
+      \item \textbf{Manage templates:} An agent should be able to create new notification templates, update and
+            delete existing ones.
+      \item \textbf{Manage triggers:} An agent should be able to create new notification triggers, configure
+            the target audience the scheduling, update, change status and delete existing triggers.
+      \item \textbf{Manage audiences:} An agent should be able create new segments of users based on a
+            criteria, update and delete existing ones.
+      \item \textbf{View logs:} An agent should be able to view logs of sent notifications and their statuses.
 \end{itemize}
 
 \paragraph{Client requirements}
 \label{client-req}
 \begin{itemize}
-    \item \textbf{Manage notification preference:} A client should be able to edit his notification preferences,
-    channels and frequency of receiving notifications.
-    \item \textbf{View notification history:} A client should be able to checkout a history of his received 
-    notifications (for in-app notifications).
+      \item \textbf{Manage notification preference:} A client should be able to edit his notification preferences,
+            channels and frequency of receiving notifications.
+      \item \textbf{View notification history:} A client should be able to checkout a history of his received
+            notifications (for in-app notifications).
 \end{itemize}
 
 \subsection{Non-Functional requirements}
 \label{nfr}
-When designing a notification system, various technical requirements need to be considered to ensure 
+When designing a notification system, various technical requirements need to be considered to ensure
 its effectiveness, reliability, and scalability. Here are the key requirements that should be addressed:
 
 \begin{itemize}
-    \item \textbf{Security:} The system shall enforce secure communication protocols, such as \acrshort{https}, 
-    to protect sensitive data during transmissionn, also data and preferences stored in the system shall be securely 
-    encrypted to prevent unauthorized access or data breaches.
-    \item \textbf{Real-time:} The system shall deliver notifications in real-time or near real-time 
-    to ensure timely communication, messages and notifications should be delivered with minimal delay for high 
-    priority topics.
-    \item \textbf{Scalability:} The system should be designed to handle a high volume of concurrent users 
-    and notifications without compromising performance and the system architecture should be scalable, allowing for 
-    horizontal scaling by adding more servers or utilizing cloud-based infrastructure as the user base grows.
-    \item \textbf{Customizability:} The system should provide flexibility and customizability to meet 
-    the specific branding and user experience requirements of different organizations. Also the system should 
-    allow customization of user preferences to provide a personalized experience.
+      \item \textbf{Security:} The system shall enforce secure communication protocols, such as \acrshort{https},
+            to protect sensitive data during transmissionn, also data and preferences stored in the system shall be securely
+            encrypted to prevent unauthorized access or data breaches.
+      \item \textbf{Real-time:} The system shall deliver notifications in real-time or near real-time
+            to ensure timely communication, messages and notifications should be delivered with minimal delay for high
+            priority topics.
+      \item \textbf{Scalability:} The system should be designed to handle a high volume of concurrent users
+            and notifications without compromising performance and the system architecture should be scalable, allowing for
+            horizontal scaling by adding more servers or utilizing cloud-based infrastructure as the user base grows.
+      \item \textbf{Customizability:} The system should provide flexibility and customizability to meet
+            the specific branding and user experience requirements of different organizations. Also the system should
+            allow customization of user preferences to provide a personalized experience.
 \end{itemize}
 
 \section{Scrum implementation overview}
 \label{spec}
-This section provides an overview of the Scrum implementation in our project It includes a global use case diagram, showcasing the system's 
-high-level functionalities, followed by the presentation of the product backlog and the planning 
+This section provides an overview of the Scrum implementation in our project It includes a global use case diagram, showcasing the system's
+high-level functionalities, followed by the presentation of the product backlog and the planning
 of the sprints.
 
 \subsection{Global use case diagram}
-Using \acrshort{uml} use case diagrams to model the requirements allows for a visual representation 
-of the interactions between actors and the system, providing a clear and concise way to specify 
+Using \acrshort{uml} use case diagrams to model the requirements allows for a visual representation
+of the interactions between actors and the system, providing a clear and concise way to specify
 the functionalities and behaviors expected from the product.
 
 The figure \ref{g-usecase} illustrates the global use case diagram we modeled for our notification system: \\
 
 \begin{figure}[hbt!]
-    \centering
-    \includesvg[]{images/usecase/global}
-    \caption{Notification Center global use case diagram}
-    \label{g-usecase}
+      \centering
+      \includesvg[]{diagrams/usecase/global}
+      \caption{Notification Center global use case diagram}
+      \label{g-usecase}
 \end{figure}
 
 \subsection{Product backlog}
-The Product Backlog serves as a dynamic and living artifact that captures and organizes the 
+The Product Backlog serves as a dynamic and living artifact that captures and organizes the
 ever-evolving list of features, functionalities, and enha   ncements desired for a software product.
 
 \begin{itemize}
-    \item \textbf{Epic:} Is a large body of work that can be broken down into a number of smaller stories.
-    \item \textbf{User story:} Is an informal, general explanation of a software feature written from the 
-    perspective of the end user or customer, in the form of: \\ “As a [persona], I [want to], [so that].”
-    \item \textbf{Estimation:} An estimate of the overall effort required to fully implement a product 
-    backlog item or any other piece of work, in our case we used the number of working hours. \\
+      \item \textbf{Epic:} Is a large body of work that can be broken down into a number of smaller stories.
+      \item \textbf{User story:} Is an informal, general explanation of a software feature written from the
+            perspective of the end user or customer, in the form of: \\ “As a [persona], I [want to], [so that].” \\
+            % \item \textbf{Estimation:} An estimate of the overall effort required to fully implement a product
+            %       backlog item or any other piece of work, in our case we used the number of working hours. \\
 \end{itemize}
 
-\begin{longtable}{ | m{0.18\textwidth}  | m{0.6\textwidth} | c | }
-        \hline
-        \textbf{Epic} & \textbf{User story} & \textbf{Estimation} \\
-        \hline
-        \endfirsthead
-        \hline
-        \textbf{Epic} & \textbf{User story} & \textbf{Estimation} \\
-        \hline  
-        \endhead
-        \hline
-        \endfoot
-        \endlastfoot
-        \multirow{2}{5em}{Authentication} & As a new user, I want to be able to create an account so that I can use the notification center. & 16 \\
-        \cline{2-3}
-        & As a registered user, I want to be able to log into my account securely using my email and password. & 16 \\
-        \hline
-        \multirow{4}{5em}{Agents management} & As an administrator, I want to be able to create agents so that I can add them to the notification center. & 16 \\
-        \cline{2-3}
-        & As an administrator, I want to be able to list agents so that I can view all registered agents. & 16 \\
-        \cline{2-3}
-        & As an administrator, I want to be able to edit agents so that I can modify their information. & 8 \\
-        \cline{2-3}
-        & As an administrator, I want to be able to delete agents so that I can get rid of no longer needed agents. & 8 \\
-        \hline
-        \multirow{4}{5em}{Users management} & As an administrator/agent, I want to be able to create users so that I can send them notifications. & 16 \\
-        \cline{2-3}
-        & As an administrator/agent, I want to be able to list users so that I can view all created users. & 16 \\
-        \cline{2-3}
-        & As an administrator/agent, I want to be able to edit users so that I can modify their information. & 8 \\
-        \cline{2-3}
-        &  As an administrator/agent, I want to be able to delete users so that I can get rid of no longer needed users. & 8 \\
-        \hline
-        \multirow{4}{5em}{Audience management} & As an administrator/agent, I want to be able to create an audience so that I can target specific individuals based on a criteria. & 24 \\
-        \cline{2-3}
-        & As an administrator/agent, I want to be able to list audiences so that I can view all created segments. & 16 \\
-        \cline{2-3}
-        & As an administrator/agent, I want to be able to edit an audience so that I can change selection criteria and segment configurations. & 8 \\
-        \cline{2-3}
-        & As an administrator/agent, I want to be able to delete a group of users so that I can get rid of no longer needed groups.. & 8 \\
-        \hline
-        \multirow{4}{5em}{Notification channels management} & As an administrator/agent, I want to be able to create notification channels so that I can send notifications through these channels. & 32 \\
-        \cline{2-3}
-        & As an administrator/agent, I want to be able to list notification channels so that I can view all created channels. & 16 \\
-        \cline{2-3}
-        & As an administrator, I want to be able to edit notification channels so that I can modify or update their configurations. & 8 \\
-        \cline{2-3}
-        & As an administrator/agent, I want to be able to delete notification channels so that I can get rid of no longer used channels. & 8 \\
-        \hline
-        \multirow{4}{5em}{Notification templates management} & As an agent, I want to be able to add notification templates so that I can send notifications based on that template. & 24 \\
-        \cline{2-3}
-        & As an agent, I want to be able to list notification templates so that I can view all created templates. & 16 \\
-        \cline{2-3}
-        & As an agent, I want to be able to edit notification templates so that I can keep them up to date. & 8 \\
-        \cline{2-3}
-        & As an agent, I want to be able to delete templates so that I can get rid of no longer used templates. & 8 \\
-        \hline
-        Notification preferences management & As a user, I want to be able to set my notification preferences, so that I can receive notifications from the channels I want. & 16 \\
-        \hline
-        \pagebreak
-        \multirow{4}{5em}{Notification triggers management} & As an agent, I want to be able to create triggers for notifications so that I can schedule notifications to be sent automatically. & 32 \\
-        \cline{2-3}
-        & As an agent, I want to be able to list triggers for notifications so that I can view all created triggers. & 16 \\
-        \cline{2-3}
-        & As an agent, I want to be able to edit notifications triggers so that I can modify or update its configurations. & 8 \\
-        \cline{2-3}
-        & As an agent, I want to be able to delete notification triggers so that I can get rid of outdated and no longer used triggers. & 8 \\
-        \hline
-        \multirow{4}{5em}{Notification history} & As a user, I want to be able to list notification history so that I can review my received notifications whenever I want. & 16 \\
-        \cline{2-3}
-        & As an administrator/agent, I want to be able to list sent notification logs so that I can review all sent notifications. & 16 \\   
-        \hline
-        Dashboard & As an administrator/agent I want to be able to view metrics on my dashboard so that I can get an overview on important statistics related to notification activities. & 16 \\
-        \hline
-        \caption{Product backlog}
+\begin{longtable}{ | m{0.18\textwidth}  | m{0.77\textwidth} | }
+      \hline
+      \textbf{Epic}                                           & \textbf{User story}                                                                                                                                                   \\
+      \hline
+      \endfirsthead
+      \hline
+      \textbf{Epic}                                           & \textbf{User story}                                                                                                                                                   \\
+      \hline
+      \endhead
+      \hline
+      \endfoot
+      \endlastfoot
+      \multirow[t]{2}{5em}{Authentication}                    & As a new user, I want to be able to create an account so that I can use the notification center.                                                                      \\
+      \cline{2-2}
+                                                              & As a registered user, I want to be able to log into my account securely using my email and password.                                                                  \\
+      \hline
+      \multirow[t]{4}{5em}{Agents management}                 & As an administrator, I want to be able to create agents so that I can add them to the notification center.                                                            \\
+      \cline{2-2}
+                                                              & As an administrator, I want to be able to list agents so that I can view all registered agents.                                                                       \\
+      \cline{2-2}
+                                                              & As an administrator, I want to be able to edit agents so that I can modify their information.                                                                         \\
+      \cline{2-2}
+                                                              & As an administrator, I want to be able to delete agents so that I can get rid of no longer needed agents.                                                             \\
+      \hline
+      \multirow[t]{4}{5em}{Users management}                  & As an administrator/agent, I want to be able to create users so that I can send them notifications.                                                                   \\
+      \cline{2-2}
+                                                              & As an administrator/agent, I want to be able to list users so that I can view all created users.                                                                      \\
+      \cline{2-2}
+                                                              & As an administrator/agent, I want to be able to edit users so that I can modify their information.                                                                    \\
+      \cline{2-2}
+                                                              & As an administrator/agent, I want to be able to delete users so that I can get rid of no longer needed users.                                                         \\
+      \hline
+      \multirow[t]{4}{5em}{Audience management}               & As an administrator/agent, I want to be able to create an audience so that I can target specific individuals based on a criteria.                                     \\
+      \cline{2-2}
+                                                              & As an administrator/agent, I want to be able to list audiences so that I can view all created segments.                                                               \\
+      \cline{2-2}
+                                                              & As an administrator/agent, I want to be able to edit an audience so that I can change selection criteria and segment configurations.                                  \\
+      \cline{2-2}
+                                                              & As an administrator/agent, I want to be able to delete a group of users so that I can get rid of no longer needed groups..                                            \\
+      \hline
+      \multirow[t]{4}{5em}{Notification channels management}  & As an administrator/agent, I want to be able to create notification channels so that I can send notifications through these channels.                                 \\
+      \cline{2-2}
+                                                              & As an administrator/agent, I want to be able to list notification channels so that I can view all created channels.                                                   \\
+      \cline{2-2}
+                                                              & As an administrator, I want to be able to edit notification channels so that I can modify or update their configurations.                                             \\
+      \cline{2-2}
+                                                              & As an administrator/agent, I want to be able to delete notification channels so that I can get rid of no longer used channels.                                        \\
+      \hline
+      \multirow[t]{4}{5em}{Notification templates management} & As an agent, I want to be able to add notification templates so that I can send notifications based on that template.                                                 \\
+      \cline{2-2}
+                                                              & As an agent, I want to be able to list notification templates so that I can view all created templates.                                                               \\
+      \cline{2-2}
+                                                              & As an agent, I want to be able to edit notification templates so that I can keep them up to date.                                                                     \\
+      \cline{2-2}
+                                                              & As an agent, I want to be able to delete templates so that I can get rid of no longer used templates.                                                                 \\
+      \hline
+      Notification preferences management                     & As a user, I want to be able to set my notification preferences, so that I can receive notifications from the channels I want.                                        \\
+      \hline
+      \multirow[t]{4}{5em}{Notification triggers management}  & As an agent, I want to be able to create triggers for notifications so that I can schedule notifications to be sent automatically.                                    \\
+      \cline{2-2}
+                                                              & As an agent, I want to be able to list triggers for notifications so that I can view all created triggers.                                                            \\
+      \cline{2-2}
+                                                              & As an agent, I want to be able to edit notifications triggers so that I can modify or update its configurations.                                                      \\
+      \cline{2-2}
+                                                              & As an agent, I want to be able to delete notification triggers so that I can get rid of outdated and no longer used triggers.                                         \\
+      \hline
+      \multirow[t]{4}{5em}{Notification history}              & As a user, I want to be able to list notification history so that I can review my received notifications whenever I want.                                             \\
+      \cline{2-2}
+                                                              & As an administrator/agent, I want to be able to list sent notification logs so that I can review all sent notifications.                                              \\
+      \hline
+      Dashboard                                               & As an administrator/agent I want to be able to view metrics on my dashboard so that I can get an overview on important statistics related to notification activities. \\
+      \hline
+      \caption{Product backlog}
 \end{longtable}
 
 \subsection{Releases and sprints planning}
-A release refers to the deployment of a specific version or update of a software product. It involves meticulous planning 
-and coordination to ensure successful delivery. 
+A release refers to the deployment of a specific version or update of a software product. It involves meticulous planning
+and coordination to ensure successful delivery.
 
-In the following table, we present the detailed planning of the releases, outlining the sprints included in each release, 
+In the following table, we present the detailed planning of the releases, outlining the sprints included in each release,
 and the epics included in each sprint. \\
 
 \begin{table}[hbt!]
-    \begin{tabular}{ | m{0.25\textwidth} | m{0.25\textwidth} | m{0.42\textwidth} | }
-        \hline
-        \textbf{Release} & \textbf{Sprints} & \textbf{Epics} \\
-        \hline
-        \multirow{2}{5em}{Release 1} 
-            & \multirow{3}{5em}{Sprint 1} & Authentication \\
+      \begin{tabular}{ | m{0.25\textwidth} | m{0.25\textwidth} | m{0.42\textwidth} | }
+            \hline
+            \textbf{Release}             & \textbf{Sprints}            & \textbf{Epics}                      \\
+            \hline
+            \multirow{2}{5em}{Release 1}
+                                         & \multirow{3}{5em}{Sprint 1} & Authentication                      \\
             \cline{3-3}
-            & & Agents management \\
+                                         &                             & Agents management                   \\
             \cline{3-3}
-            & & Users management \\
+                                         &                             & Users management                    \\
             \cline{2-3}
 
-            & \multirow{2}{5em}{Sprint 2} & Audiences management \\
+                                         & \multirow{2}{5em}{Sprint 2} & Audiences management                \\
             \cline{3-3}
-            & & Notification channels management \\
-        \hline
-        \multirow{2}{5em}{Release 2} & \multirow{2}{5em}{Sprint 3} & Notification templates management \\
-        \cline{3-3}
-        & & Notification preferences management \\
-        \cline{2-3}
-        & \multirow{3}{5em}{Sprint 4} & Notification triggers management \\
-        \cline{3-3}
-        & & Notification history \\
-        \cline{3-3}
-        & & Dashboard \\
-        \hline
-    \end{tabular}
-    \caption{Releases and sprints planning}
-    \label{tab:planning}
+                                         &                             & Notification channels management    \\
+            \hline
+            \multirow{2}{5em}{Release 2} & \multirow{2}{5em}{Sprint 3} & Notification templates management   \\
+            \cline{3-3}
+                                         &                             & Notification preferences management \\
+            \cline{2-3}
+                                         & \multirow{3}{5em}{Sprint 4} & Notification triggers management    \\
+            \cline{3-3}
+                                         &                             & Notification history                \\
+            \cline{3-3}
+                                         &                             & Dashboard                           \\
+            \hline
+      \end{tabular}
+      \caption{Releases and sprints planning}
+      \label{tab:planning}
 \end{table}
 
 \section{Development infrastructure}
@@ -259,11 +258,11 @@ and the epics included in each sprint. \\
 \phantomsection
 \section*{Summary}
 \addcontentsline{toc}{section}{Summary}
-In this chapter we laid the groundwork for the project by comprehensively gathering and analyzing 
-the requirements. By identifying end-users, defining functional and non-functional requirements, 
-and creating a clear specification through use case diagrams, elaborating the product backlog, 
-and planning sprints, we have set the stage for the subsequent phases of development. 
+In this chapter we laid the groundwork for the project by comprehensively gathering and analyzing
+the requirements. By identifying end-users, defining functional and non-functional requirements,
+and creating a clear specification through use case diagrams, elaborating the product backlog,
+and planning sprints, we have set the stage for the subsequent phases of development.
 
-The insights gained from this chapter will prove invaluable in ensuring the successful implementation 
-of the project and the satisfaction of the end-users. In the following chapter, we will start executing 
+The insights gained from this chapter will prove invaluable in ensuring the successful implementation
+of the project and the satisfaction of the end-users. In the following chapter, we will start executing
 our project providing the practical realization of the initial release.
