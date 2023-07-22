@@ -6,7 +6,7 @@ from googleapiclient.http import MediaFileUpload
 
 
 # Load service account credentials from the environment variable
-credentials_json = json.loads("os.getenv('SERVICE_ACCOUNT_CREDENTIALS')")
+credentials_json = json.loads(os.getenv('SERVICE_ACCOUNT_CREDENTIALS'))
 credentials = service_account.Credentials.from_service_account_info(
     credentials_json, scopes=['https://www.googleapis.com/auth/drive'])
 
