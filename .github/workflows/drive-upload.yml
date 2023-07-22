@@ -1,0 +1,29 @@
+name: Upload PDF to Google Drive
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "main.pdf"
+
+jobs:
+  upload:
+    name: New version upload
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11.4' 
+
+      - name: Upload report PDF file to Drive folders
+        env:
+          SERVICE_ACCOUNT_CREDENTIALS: ${{ secrets.SERVICE_ACCOUNT_CREDENTIALS }}
+        run: |
+          pip install --upgrade google-api-python-client
+          python drive-upload.py
