@@ -39,7 +39,7 @@ Functional requirements define the specific actions, tasks, and behaviors that t
 must be able to perform in order to meet the needs of its end-users. These requirements
 form the foundation of the system's functionality.
 
-The functional requirements we captured for each actor in are outlined below.
+\noindent The functional requirements we captured for each actor in are outlined below.
 
 \paragraph{Authentication and Profile settings}
 \label{common-req}
@@ -121,7 +121,7 @@ The figure \ref{g-usecase} illustrates the global use case diagram we modeled fo
 
 \begin{figure}[hbt!]
       \centering
-      \includesvg[]{diagrams/usecase/global}
+      \includesvg[width=0.8\textwidth]{diagrams/usecase/global}
       \caption{Notification Center global use case diagram}
       \label{g-usecase}
 \end{figure}
@@ -265,13 +265,37 @@ request-response model. The client sends the request to the server for informati
 responds with it.
 
 % TODO: Elaborate & Illustration for client server architecture with 3-tiers
-
 We agreed to adopt a monolithic approach, where all the application modules and components are tightly
 integrated into a single codebase. This decision was based on several factors such as the project's
 scope, timeline, and the team's familiarity with monolithic architectures. Furthermore, for the envisioned
 requirements, a monolithic design offered simplicity and ease of development, deployment, and maintenance.
 
 % TODO: Illustraion if needed
+
+\subsection{Tools}
+In this section we present the set of tools we used to support our development process.
+
+\begin{table}[hbt!]
+      \begin{tabular}{ | m{0.2\textwidth} | m{0.795\textwidth} | }
+            \hline
+            \centering\includesvg{logo/docker}    & Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers. We used docker to create containers for the database and other components we needed for development and also to fully dockerize the application and all the services that it depends on. \\
+            \hline
+            \centering\includesvg{logo/bitbucket} & Bitbucket is a Git based source code repository hosting and collaboration tool owned by Atlassian. We used this service to host the source code for our project.                                                                                                                                                               \\
+            \hline
+            \centering\includesvg{logo/postman}   & Postman is an API platform for building and using APIs. Postman simplifies each step of the API lifecycle and streamlines collaboration to create APIs faster. We used postman to test and maintain our notification center API.                                                                                               \\
+            \hline
+            \centering\includesvg{logo/intellij}  & IntelliJ IDEA is an integrated development environment for developing computer software written in Java, Kotlin, Groovy, and other JVM-based languages.                                                                                                                                                                        \\
+            \hline
+            \centering\includesvg{logo/figma}     & Figma is a collaborative web application for user interface and user experience design, with an emphasis on real-time collaboration, utilising a variety of vector graphics editor and prototyping tools. We used Figma to create wireframes, UI designs and illustrtations for our solution.                                  \\
+            \hline
+            \centering\includesvg{logo/drawio}    & draw.io is a cross-platform graph drawing software that can be used to create diagrams such as flowcharts, wireframes, UML diagrams, etc. We used draw.io to create the uml diagrams during the software desgin process.                                                                                                       \\
+            \hline
+            \centering\includesvg{logo/trello}    & Trello is a web-based visual work and tasks management tool. We used trello to keep track of and to collaborate on the development tasks during the execution of the project.                                                                                                                                                  \\
+            \hline
+      \end{tabular}
+      \caption{Software tools}
+      \label{tools}
+\end{table}
 
 \pagebreak
 \phantomsection
