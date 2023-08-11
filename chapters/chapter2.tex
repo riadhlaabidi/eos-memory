@@ -254,23 +254,46 @@ and the epics included in each sprint. \\
 
 \section{Development infrastructure}
 In this section, we will discuss the development infrastructure established for the successful execution
-of the project. The primary focus will be on the software architecture. Additionally, we will elaborate on the curated set of tools and frameworks that were employed to support
-and streamline the development workflow.
+of the project. The primary focus will be on the software architecture. Additionally, we will elaborate
+on the curated set of tools and frameworks that were employed to support and streamline the development
+workflow.
 
 
 \subsection{Software architecture}
-To implement our notification center, we will pick a client-server architecture as we need control
-over the service. This architecture is the fundamental building block of the web and works on a
-request-response model. The client sends the request to the server for information and the server
-responds with it.
+To implement our notification center, we will base our work on a client-server architecture.
+In this approach, the client, representing the user interface, interacts with the server, which houses
+the application's core logic and data. This separation of concerns allows for centralized management
+of data and business logic while catering to various clients.
 
-% TODO: Elaborate & Illustration for client server architecture with 3-tiers
-We agreed to adopt a monolithic approach, where all the application modules and components are tightly
-integrated into a single codebase. This decision was based on several factors such as the project's
-scope, timeline, and the team's familiarity with monolithic architectures. Furthermore, for the envisioned
-requirements, a monolithic design offered simplicity and ease of development, deployment, and maintenance.
+One of the extensions to the mentioned architecture, and the one we will adopt is the \textbf{three-tier monolithic}
+architecture, where all the application modules and components are tightly integrated into a single
+codebase. This decision was based on several factors such as the project's scope, timeline, and the
+team's familiarity with monolithic architectures. Furthermore, for the envisioned requirements,
+a monolithic design offered simplicity and ease of development and deployment to quickly get the
+application started. \\
 
-% TODO: Illustraion if needed
+\begin{figure}[hbt!]
+      \centering
+      \includesvg[width=\textwidth]{app/monolithic}
+      \caption{Monolithic three-tier architecture}
+      \label{monolithic}
+\end{figure}
+
+In a three-tier application, the user interface, business logic, and the database all reside
+on different machines and, thus, have different tiers. They are physically separated.
+
+
+% TODO: Illustraion if needed for components
+
+% The backend application code has a REST-API implemented. This acts as an interface to the outside world
+% requests. Every request, be it from the client written by the business or the third-party developers,
+% those who consume our API data have to hit the REST endpoints to fetch the data.
+
+% A thin client is a client that holds just the user interface of the application. It contains no business logic of any sort. For every action, the client sends a request to the backend server, just like in a three-tier application.
+
+\subsection{Database}
+\subsection{Backend technology}
+\subsection{Frontent technology}
 
 \subsection{Tools}
 In this section we present the set of tools we used to support our development process.
