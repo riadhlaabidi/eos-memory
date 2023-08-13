@@ -270,30 +270,62 @@ architecture, where all the application modules and components are tightly integ
 codebase. This decision was based on several factors such as the project's scope, timeline, and the
 team's familiarity with monolithic architectures. Furthermore, for the envisioned requirements,
 a monolithic design offered simplicity and ease of development and deployment to quickly get the
-application started. \\
+application started.
+
+\noindent The figure \ref{monolithic} shows the separation of the three tiers in the monolithic architecture : \\
 
 \begin{figure}[hbt!]
       \centering
-      \includesvg[width=\textwidth]{app/monolithic}
+      \includesvg[width=0.85\textwidth]{app/monolithic}
       \caption{Monolithic three-tier architecture}
       \label{monolithic}
 \end{figure}
 
-In a three-tier application, the user interface, business logic, and the database all reside
-on different machines and, thus, have different tiers. They are physically separated.
+\paragraph{Presentation tier:}
+The presentation tier is the user interface and communication layer of the application. Its main purpose
+is to display information to and collect information from the user. This top-level tier can run on a web
+browser, as desktop application, or a graphical user interface.
 
+\paragraph{Application tier:}
+In this tier, information collected in the presentation tier is processed, sometimes against other
+information in the data tier, using business logic, a specific set of business rules. The application
+tier can also add, delete or modify data in the data tier.
+
+\paragraph{Data tier:}
+The data tier, sometimes called database tier, data access tier or back-end, is where the information
+processed by the application is stored and managed. This can be a relational database management system
+or a NoSQL Database server.
+
+The user interface, business logic, and the database all reside on different machines and, thus, have
+different tiers. They are physically separated.
 
 % TODO: Illustraion if needed for components
-
-% The backend application code has a REST-API implemented. This acts as an interface to the outside world
-% requests. Every request, be it from the client written by the business or the third-party developers,
-% those who consume our API data have to hit the REST endpoints to fetch the data.
 
 % A thin client is a client that holds just the user interface of the application. It contains no business logic of any sort. For every action, the client sends a request to the backend server, just like in a three-tier application.
 
 \subsection{Database}
+Selecting the appropriate database is a pivotal decision in our system design. After careful consideration,
+we've chosen to employ a relational database, specifically PostgreSQL. This choice is driven by the
+following criteria:
+
+\begin{itemize}
+      \item \textbf{Structured Data:} We need to store notification channels and templates, user segments,
+            and scheduling details in structured tables, these entities share relationships that
+            interconnect them.
+      \item \textbf{ACID Compliance:} We need to ensure data integrity and consistency, as it's critical
+            for reliable notification delivery and management.
+      \item \textbf{Query Flexibility:} We need to leverage SQL queries to effectively retrieve and manipulate
+            Data, enabling comprehensive reporting and analysis.
+\end{itemize}
+
+PostgreSQL is an open source object-relational database system that has a strong reputation for its
+reliability, flexibility, and support of open technical standards. PostgreSQL comes with many features
+aimed to help developers build applications and help managing higher data loads. In addition to being
+free and open source, PostgreSQL is highly extensible.
+
+
 \subsection{Backend technology}
-\subsection{Frontent technology}
+\subsection{Frontend technology}
 
 \subsection{Tools}
 In this section we present the set of tools we used to support our development process.
@@ -315,6 +347,8 @@ In this section we present the set of tools we used to support our development p
             \hline
             \centering\includesvg{logo/trello}    & Trello is a web-based visual work and tasks management tool. We used trello to keep track of and to collaborate on the development tasks during the execution of the project.                                                                                                                                                  \\
             \hline
+            % TODO: teams
+            % TODO: latex
       \end{tabular}
       \caption{Software tools}
       \label{tools}
