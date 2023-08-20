@@ -255,8 +255,8 @@ and the epics included in each sprint. \\
 \section{Development infrastructure}
 In this section, we will discuss the development infrastructure established for the successful execution
 of the project. The primary focus will be on the software architecture. Additionally, we will elaborate
-on the curated set of tools and frameworks that were employed to support and streamline the development
-workflow.
+on the database choice and the curated set of tools and frameworks that were employed to support and
+streamline the development workflow.
 
 
 \subsection{Software architecture}
@@ -265,12 +265,12 @@ In this approach, the client, representing the user interface, interacts with th
 the application's core logic and data. This separation of concerns allows for centralized management
 of data and business logic while catering to various clients.
 
-One of the extensions to the mentioned architecture, and the one we will adopt is the \textbf{three-tier monolithic}
-architecture, where all the application modules and components are tightly integrated into a single
-codebase. This decision was based on several factors such as the project's scope, timeline, and the
-team's familiarity with monolithic architectures. Furthermore, for the envisioned requirements,
-a monolithic design offered simplicity and ease of development and deployment to quickly get the
-application started.
+One of the extensions to the mentioned architecture, and the one we will adopt is
+the \textbf{three-tier monolithic architecture}, where all the application modules and components
+are tightly integrated into a single codebase. This decision was based on several factors such as
+the project's scope, timeline, and the team's familiarity with monolithic architectures.
+Furthermore, for the envisioned requirements, a monolithic design offered simplicity and ease
+of development and deployment to quickly get the application started.
 
 \noindent The figure \ref{monolithic} shows the separation of the three tiers in the monolithic architecture : \\
 
@@ -323,9 +323,102 @@ reliability, flexibility, and support of open technical standards. PostgreSQL co
 aimed to help developers build applications and help managing higher data loads. In addition to being
 free and open source, PostgreSQL is highly extensible.
 
+% \subsection{Technology Stack and Framework Selection}
+% In this part, we will delve into the technology stack and frameworks adopted for our project.
+% This includes considerations for both backend and frontend components. By examining these choices,
+% we gain a clear understanding of the tools driving the development of our project.
 
 \subsection{Backend technology}
+This section delves into the chosen technology for the backend part of our solution and the
+internal architectural pattern.
+
+\subsubsection{Spring Boot framework}
+Spring Boot emerged as the optimal backend technology for our project.
+Spring Boot is built upon the robust Spring framework, makes developing production-grade Spring based
+web application and microservices faster and easier through three core capabilities:
+
+\begin{itemize}
+      \item \textbf{Auto Configuration:} Spring Boot comes with built-in autoconfiguration capabilities,
+            it automatically configures both the underlying Spring Framework and third-party packages based
+            on the provided settings.
+      \item \textbf{Opinionated approach:}  Spring Boot chooses which packages to install and which default
+            values to use,rather than requiring the developer to make all those decisions on their own and set
+            up everything manually.
+      \item \textbf{Standalone applications:} Spring Boot helps developers create standalone applications
+            that run on their own, without relying on an external web server, by embedding a web server such as
+            Tomcat into the application during the initialization process.
+\end{itemize}
+
+\subsubsection{Spring boot flow architecture}
+Spring Boot uses a hierarchical architecture in which each layer communicates with the layer immediately
+below or above it as show in the following figure \ref{layers}
+
+\begin{figure}[hbt!]
+      \centering
+      \includesvg[width=0.7\textwidth]{app/spring-boot-layers}
+      \caption{Spring Boot application layers}
+      \label{layers}
+\end{figure}
+
+Spring Boot integrates almost all of the features and modules of the Spring framework: like Spring MVC,
+Spring Core, Spring Data \& JPA, etc. Spring Boot follows nearly the same architectural pattern as
+Spring MVC, except for one thing: there is no need for \acrfull{dao} and \acrshort{dao} Implementation
+classes in Spring boot because as we mentioned in figure \ref{layers} its architecture has a data access
+layer and performs \acrshort{crud} operations.
+
+% Spring flow architecture illustration
+\begin{figure}[hbt!]
+      \centering
+      \includesvg[width=0.85\textwidth]{app/spring-flow}
+      \caption{Spring Boot flow architecture}
+      \label{flow}
+\end{figure}
+
+
 \subsection{Frontend technology}
+This section illustrates the chosen technology for the client part of our solution and the adopted
+internal architectural pattern.
+
+\subsubsection{Angular framework}
+For the user facing part of our solution, we will select the Angular frontend framework.
+Angular, developed and maintained by Google, is a development platform, built on TypeScript and
+includes:
+\begin{itemize}
+      \item A component-based framework for building scalable web applications.
+      \item A collection of well-integrated libraries that cover a wide variety of features,
+            including routing, forms management, client-server communication, etc.
+      \item A suite of developer tools to help develop, build, test, and update code. \cite{angular}
+\end{itemize}
+\raggedbottom
+
+\subsubsection{Angular architectural pattern}
+
+Angular follows a component-based architectural pattern that aligns closely with the
+\acrfull{mvvm} pattern, a design paradigm that separates concerns in frontend
+development. While Angular's terminologies don't exactly match \acrshort{mvvm},
+the concepts map as follows: \\
+
+\begin{figure}[hbt!]
+      \centering
+      \includesvg[width=0.85\textwidth]{app/mvvm}
+      \caption{\acrshort{mvvm} architectural pattern}
+      \label{mvvm}
+\end{figure}
+
+\paragraph{Model:} Corresponds to business logic encapsulated within services and components.
+Services encapsulate data retrieval and manipulation, and act as the bridge between
+the application and external data sources.
+
+\paragraph{View:} Corresponds to the HTML templates in Angular. Templates define the structure and
+appearance of the user interface. Angular's binding mechanisms (property binding, event binding,
+and two-way binding) facilitate the synchronization between the model (data) and the view (UI).
+
+\paragraph{ViewModel:} Is represented by the component class. The component class contains
+the presentation logic, handling user interactions, processing data, and managing the application's state.
+It orchestrates the communication between the model and the view, ensuring that changes in one are
+reflected appropriately in the other.
+
+
 
 \subsection{Tools}
 In this section we present the set of tools we used to support our development process.
