@@ -328,7 +328,7 @@ free and open source, PostgreSQL is highly extensible.
 % This includes considerations for both backend and frontend components. By examining these choices,
 % we gain a clear understanding of the tools driving the development of our project.
 
-\subsection{Backend technology}
+\subsection{Server-side technology}
 This section delves into the chosen technology for the backend part of our solution and the
 internal architectural pattern.
 
@@ -375,8 +375,8 @@ layer and performs \acrshort{crud} operations.
 \end{figure}
 
 
-\subsection{Frontend technology}
-This section illustrates the chosen technology for the client part of our solution and the adopted
+\subsection{Client-side technology}
+This section illustrates the chosen technology for the client side of our solution and the adopted
 internal architectural pattern.
 
 \subsubsection{Angular framework}
@@ -418,43 +418,37 @@ the presentation logic, handling user interactions, processing data, and managin
 It orchestrates the communication between the model and the view, ensuring that changes in one are
 reflected appropriately in the other.
 
+\subsection{JHipster Platform}
+In our quest to identify effective tools for accelerating the development of an enterprise-level solution
+while minimizing the burdens of boilerplate code and other repetitive tasks, we conducted a research.
+Our objective was to pinpoint a solution that not only expedites project initiation but also empowers
+our team to concentrate on the core application logic.
 
+We have chosen JHipster as the foundation for our project development. JHipster is a development
+platform to quickly generate, develop, and deploy modern web applications and microservice
+architectures. \cite{jhipster}
 
-\subsection{Tools}
-In this section we present the set of tools we used to support our development process.
+\noindent The value proposition that JHipster provides is reflected in:
 
-\begin{table}[hbt!]
-      \begin{tabular}{ | m{0.2\textwidth} | m{0.795\textwidth} | }
-            \hline
-            \centering\includesvg{logo/docker}    & Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers. We used docker to create containers for the database and other components we needed for development and also to fully dockerize the application and all the services that it depends on. \\
-            \hline
-            \centering\includesvg{logo/bitbucket} & Bitbucket is a Git based source code repository hosting and collaboration tool owned by Atlassian. We used this service to host the source code for our project.                                                                                                                                                               \\
-            \hline
-            \centering\includesvg{logo/postman}   & Postman is an API platform for building and using APIs. Postman simplifies each step of the API lifecycle and streamlines collaboration to create APIs faster. We used postman to test and maintain our notification center API.                                                                                               \\
-            \hline
-            \centering\includesvg{logo/intellij}  & IntelliJ IDEA is an integrated development environment for developing computer software written in Java, Kotlin, Groovy, and other JVM-based languages.                                                                                                                                                                        \\
-            \hline
-            \centering\includesvg{logo/figma}     & Figma is a collaborative web application for user interface and user experience design, with an emphasis on real-time collaboration, utilising a variety of vector graphics editor and prototyping tools. We used Figma to create wireframes, UI designs and illustrtations for our solution.                                  \\
-            \hline
-            \centering\includesvg{logo/drawio}    & draw.io is a cross-platform graph drawing software that can be used to create diagrams such as flowcharts, wireframes, UML diagrams, etc. We used draw.io to create the uml diagrams during the software desgin process.                                                                                                       \\
-            \hline
-            \centering\includesvg{logo/trello}    & Trello is a web-based visual work and tasks management tool. We used trello to keep track of and to collaborate on the development tasks during the execution of the project.                                                                                                                                                  \\
-            \hline
-            % TODO: teams
-            % TODO: latex
-      \end{tabular}
-      \caption{Software tools}
-      \label{tools}
-\end{table}
+\begin{itemize}
+      \item The creation of fully configured applications for both the front and the back ends.
+            In addition to the generation of code according to best practices and coding standards,
+            ensuring a high level of code quality and consistency throughout the project.
+      \item JHipster's integrated DevOps and \acrshort{cicd} capabilities provide a seamless pathway to automate
+            testing, deployment, and delivery processes.
+\end{itemize}
 
-\pagebreak
+\noindent In conjunction with JHipster, we employed various complementary software tools to enhance
+the development process. (see Appendix \ref{appendix:tools})
+
 \phantomsection
 \section*{Summary}
 \addcontentsline{toc}{section}{Summary}
 In this chapter we laid the groundwork for the project by comprehensively gathering and analyzing
 the requirements. By identifying end-users, defining functional and non-functional requirements,
-and creating a clear specification through use case diagrams, elaborating the product backlog,
-and planning sprints, we have set the stage for the subsequent phases of development.
+and creating a clear specification through use case diagrams, elaborating the product backlog, planning
+sprints, specifying the application's architecture and the requisite development infrastructure, we have
+set the stage for the subsequent phases of development.
 
 The insights gained from this chapter will prove invaluable in ensuring the successful implementation
 of the project and the satisfaction of the end-users. In the following chapter, we will start executing
