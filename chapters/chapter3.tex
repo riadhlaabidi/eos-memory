@@ -70,21 +70,10 @@ higher in the table indicate a higher priority. \\
 \section{Design}
 The design phase of software development is a critical step in the software development life cycle.
 It is the process of transforming the customer requirements into a detailed plan for how the software
-will be implemented. In this section we are going to focus on the design aspects related to the database
-and sodtware design.
+will be implemented. In this section we are going to focus on the design aspects related to the software
+and database design.
 
-\subsection{Database design}
-The figure \ref{g-erd}  illustrates the entity-relationship diagram for our first release.
-\begin{figure}[hbt!]
-    \centering
-    \includegraphics[width=1.7\textwidth]{diagrams/class/erd-r1}
-    \caption{Notification Center entity-relationship diagram}
-    \label{g-erd}
-\end{figure}
-
-\subsection{Software design}
-
-\subsubsection{Class diagram}
+\subsection{Class diagram}
 The class diagram provides a high-level overview of the system's structure, relationships,
 and interactions between different classes. It represents the static structure of the system,
 including classes, attributes, methods, and associations.
@@ -97,6 +86,34 @@ The figure \ref{g-class} illustrates the class diagram for our first release.
     \caption{Notification Center global class diagram}
     \label{g-class}
 \end{figure}
+
+\subsection{Database design}
+The figure \ref{g-erd}  illustrates the entity-relationship diagram for our first release.
+
+\begin{landscape}
+    \begin{figure}[hbt!]
+        \centering
+        \includesvg[width=1.55\textwidth]{diagrams/database/erd}
+        \caption{Notification Center Entity-Relationship diagram}
+        \label{g-erd}
+    \end{figure}
+\end{landscape}
+
+
+\subsection{Sequence diagrams}
+\subsubsection{Sequence diagram for Creating a Channel}
+
+
+\begin{landscape}
+    \begin{figure}[hbt!]
+        \centering
+        \includesvg[width=1.55\textwidth]{diagrams/sequence/seq-create-channel}
+        \caption{Sequence diagram for Creating a Channel}
+        \label{seq-create-channel}
+    \end{figure}
+\end{landscape}
+
+
 
 \section{Implementation}
 \subsection{Authentication page}
