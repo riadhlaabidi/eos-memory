@@ -41,7 +41,7 @@ def main():
     file_ids = [
         '1cxSRFE1MZ_FdM7bgCBcNVe02xqxziiLs',  # on twik
         '1fUNwDB8S_OLW83bjO_KB9G7rDQXTUSjJ',  # on pfe
-        '15Sip8RlcZdBGRfwt1Sv_83HLYgngKm3y'  # on nc
+        # '15Sip8RlcZdBGRfwt1Sv_83HLYgngKm3y'  # on nc
     ]
 
     file_path = 'main.pdf'
