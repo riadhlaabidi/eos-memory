@@ -139,6 +139,7 @@ ever-evolving list of features, functionalities, and enhancements desired for a 
 \end{itemize}
 
 \begin{longtable}{ | m{0.18\textwidth}  | m{0.77\textwidth} | }
+      \caption{Product backlog}                                                                                                                                                                                                                              \\
       \hline
       \textbf{Epic}                                           & \textbf{User story}                                                                                                                                                                          \\
       \hline
@@ -208,7 +209,6 @@ ever-evolving list of features, functionalities, and enhancements desired for a 
       \hline
       Dashboard                                               & \textbf{View metrics}: As an administrator/agent I want to be able to view metrics on my dashboard so that I can get an overview on important statistics related to notification activities. \\
       \hline
-      \caption{Product backlog}
 \end{longtable}
 
 \subsection{Releases and sprints planning}
@@ -219,6 +219,7 @@ In the following table, we present the detailed planning of the releases, outlin
 and the epics included in each sprint. \\
 
 \begin{table}[hbt!]
+      \caption{Releases and sprints planning}
       \begin{tabular}{ | m{0.25\textwidth} | m{0.25\textwidth} | m{0.42\textwidth} | }
             \hline
             \textbf{Release}                                                                             & \textbf{Sprints}            & \textbf{Epics}                      \\
@@ -246,7 +247,6 @@ and the epics included in each sprint. \\
                                                                                                          &                             & Dashboard                           \\
             \hline
       \end{tabular}
-      \caption{Releases and sprints planning}
       \label{tab:planning}
 \end{table}
 
@@ -281,11 +281,11 @@ of development and deployment to quickly get the application started.
 
 \paragraph{Presentation tier:}
 The presentation tier is the user interface and communication layer of the application. Its main purpose
-is to display information to and collect information from the user. This top-level tier can run on a web
+is to display information to users and gather information from them. This top-level tier can run on a web
 browser, as desktop application, or a graphical user interface.
 
 \paragraph{Application tier:}
-In this tier, information collected in the presentation tier is processed, sometimes against other
+In this tier, the data collected in the presentation tier is processed, sometimes against other
 information in the data tier, using business logic, a specific set of business rules. The application
 tier can also add, delete or modify data in the data tier.
 
@@ -339,7 +339,7 @@ web application and microservices faster and easier through three core capabilit
             it automatically configures both the underlying Spring Framework and third-party packages based
             on the provided settings.
       \item \textbf{Opinionated approach:}  Spring Boot chooses which packages to install and which default
-            values to use,rather than requiring the developer to make all those decisions on their own and set
+            values to use, rather than requiring the developer to make all those decisions on their own and set
             up everything manually.
       \item \textbf{Standalone applications:} Spring Boot helps developers create standalone
             that run on their own, without relying on an external web server, by embedding a web server such as
@@ -348,7 +348,7 @@ web application and microservices faster and easier through three core capabilit
 
 \subsubsection{Spring boot flow architecture}
 Spring Boot uses a hierarchical architecture in which each layer communicates with the layer immediately
-below or above it as shown in the figure \ref{layers} \\
+below or above it as shown in the figure \ref{layers}. \\
 
 \begin{figure}[hbt!]
       \centering
@@ -384,7 +384,7 @@ includes:
       \item A component-based framework for building scalable web applications.
       \item A collection of well-integrated libraries that cover a wide variety of features,
             including routing, forms management, client-server communication, etc.
-      \item A suite of developer tools to help develop, build, test, and update code. \cite{angular}
+      \item A suite of developer tools to help develop, build, test, and update code \cite{angular}.
 \end{itemize}
 \raggedbottom
 
