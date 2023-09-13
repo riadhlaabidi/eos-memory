@@ -78,31 +78,47 @@ The class diagram provides a high-level overview of the system's structure, rela
 and interactions between different classes. It represents the static structure of the system,
 including classes, attributes, methods, and associations.
 
+\begin{figure}[hbt!]
+    \begin{tabular}{ | m{0.2\textwidth} | m{0.735\textwidth} | }
+        \hline
+        \textbf{Class name} & \textbf{Description}                                                                                \\
+        \hline
+        User                & This class represents the user entity in our solution                                               \\
+        \hline
+        Authority           & This class represents roles which are going to be assigned to users                                 \\
+        \hline
+        NotificationUser    & This class represents the users that are going to be targeted with notifications                    \\
+        \hline
+        Channel             & This class represents the channels that are going to send notifications through to our target users \\
+        \hline
+        ServiceProvider     & This is a configuration class for the third party service for sending notifications                 \\
+        \hline
+    \end{tabular}
+\end{figure}
+
+
 The figure \ref{g-class} illustrates the class diagram for our first release.
 
 \begin{figure}[hbt!]
     \centering
-    \includesvg[width=\textwidth]{diagrams/class/r1-class}
-    \caption{Notification Center global class diagram}
+    \includesvg[width=\textwidth]{diagrams/class/r1-classp}
+    \caption{The class diagram of the first release}
     \label{g-class}
 \end{figure}
 
 \subsection{Database design}
 The figure \ref{g-erd}  illustrates the entity-relationship diagram for our first release.
 
-\begin{landscape}
-    \begin{figure}[hbt!]
-        \centering
-        \includesvg[width=1.55\textwidth]{diagrams/database/erd}
-        \caption{Notification Center Entity-Relationship diagram}
-        \label{g-erd}
-    \end{figure}
-\end{landscape}
+\begin{figure}[hbt!]
+    \centering
+    \includesvg[width=\textwidth]{diagrams/database/r1-erd}
+    \caption{Entity-Relationship diagram of the first release}
+    \label{r1-erd}
+\end{figure}
 
 
 \subsection{Sequence diagrams}
-\subsubsection{Sequence diagram for Creating a Channel}
-
+\subsubsection{Sequence diagram for Creating a channel}
 
 \begin{landscape}
     \begin{figure}[hbt!]
@@ -113,6 +129,16 @@ The figure \ref{g-erd}  illustrates the entity-relationship diagram for our firs
     \end{figure}
 \end{landscape}
 
+\subsubsection{Sequence diagram for creating an audience}
+
+\begin{landscape}
+    \begin{figure}[hbt!]
+        \centering
+        \includesvg[width=1.55\textwidth]{diagrams/sequence/seq-create-audience}
+        \caption{Sequence diagram for creating an audience}
+        \label{seq-create-audience}
+    \end{figure}
+\end{landscape}
 
 
 \section{Implementation}
