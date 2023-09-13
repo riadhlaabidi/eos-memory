@@ -17,6 +17,7 @@ The priority of backlog items is reflected by their relative order in the table.
 higher in the table indicate a higher priority. \\
 
 \begin{longtable}{ | m{0.08\textwidth}  | m{0.17\textwidth} | m{0.48\textwidth} | c | }
+    \caption{Backlog of Sprint 1 \& 2}                                                                                                                                                                                                          \\
     \hline
     \textbf{Sprint}         & \textbf{Epic}                                       & \textbf{User story}                                                                                                                   & \textbf{Estimation} \\
     \hline
@@ -64,7 +65,6 @@ higher in the table indicate a higher priority. \\
     \cline{3-4}
                             &                                                     & As an administrator/agent, I want to be able to delete notification channels so that I can get rid of no longer used channels.        & 8                   \\
     \hline
-    \caption{Backlog of Sprint 1 \& 2}
 \end{longtable}
 
 \section{Design}
@@ -78,41 +78,95 @@ The class diagram provides a high-level overview of the system's structure, rela
 and interactions between different classes. It represents the static structure of the system,
 including classes, attributes, methods, and associations.
 
-\begin{figure}[hbt!]
-    \begin{tabular}{ | m{0.2\textwidth} | m{0.735\textwidth} | }
-        \hline
-        \textbf{Class name} & \textbf{Description}                                                                                \\
-        \hline
-        User                & This class represents the user entity in our solution                                               \\
-        \hline
-        Authority           & This class represents roles which are going to be assigned to users                                 \\
-        \hline
-        NotificationUser    & This class represents the users that are going to be targeted with notifications                    \\
-        \hline
-        Channel             & This class represents the channels that are going to send notifications through to our target users \\
-        \hline
-        ServiceProvider     & This is a configuration class for the third party service for sending notifications                 \\
-        \hline
-    \end{tabular}
-\end{figure}
+\noindent The following table provides a description of each class being part of the first release desing.
+
+\begin{longtable}{ | m{0.3\textwidth} | m{0.645\textwidth} | }
+    \caption{Classes description}                                                                                                               \\
+    \hline
+    \textbf{Class name}      & \textbf{Description}                                                                                             \\
+    \hline
+    \endfirsthead
+    \hline
+    \textbf{Class name}      & \textbf{Description}                                                                                             \\
+    \hline
+    \endhead
+    \endfoot
+    \hline
+    \endlastfoot
+    User                     & This class represents the user entity in our solution                                                            \\
+    \hline
+    Authority                & This class represents roles which are going to be assigned to users                                              \\
+    \hline
+    NotificationUser         & This class represents the target customers for receiving notifications                                           \\
+    \hline
+    Channel                  & This class represents the notification channels that are going to send notifications through to our target users \\
+    \hline
+    ServiceProvider          & This class models the credentials of the third party service to integrate with the channel                       \\
+    \hline
+    NotificationSubscription & This class models a user notification subscription to a specific notification channel                            \\
+    \hline
+    Audience                 & This class models a segment of notification user subscriptions selected based on a criteria                      \\
+    \hline
+    Criteria                 & This class models a selection criteria for an audience, it represents a filter, an operator, and a value         \\
+\end{longtable}
 
 
-The figure \ref{g-class} illustrates the class diagram for our first release.
+\noindent The figure \ref{r1-class} illustrates the class diagram for our first release. \\
+
 
 \begin{figure}[hbt!]
     \centering
     \includesvg[width=\textwidth]{diagrams/class/r1-classp}
     \caption{The class diagram of the first release}
-    \label{g-class}
+    \label{r1-class}
 \end{figure}
 
 \subsection{Database design}
-The figure \ref{g-erd}  illustrates the entity-relationship diagram for our first release.
+In this section, We will discuss the structure and organization of our database, defining tables and relationships
+between entities for efficient data management within our solution.
+
+\subsubsection{Data dictionary}
+
+First, we will define a data dictionary that describes the fields associated with each data element,
+indicating their types and constraints.
+
+\begin{landscape}
+    \begin{table}
+        \caption{Data dictionary of the first release}
+        \label{tab-r1dd}
+        \begin{tabular}{ | m{0.25\textwidth} | m{0.25\textwidth} | m{0.5\textwidth} | m{0.2\textwidth} | m{0.2\textwidth} | }
+            \hline
+            \textbf{Entity}            & \textbf{Field} & \textbf{Description}             & \textbf{Type} & \textbf{Constraints} \\
+            \hline
+            \multirow[t]{3}{5em}{User} & id             & User's unique identifier         & bigint        & Id, Not Null         \\
+            \cline{2-5}
+                                       & first\_name    & User's first name                & varchar(50)   &                      \\
+            \cline{2-5}
+                                       & last\_name     & User's last name                 & varchar(50)   &                      \\
+            \cline{2-5}
+                                       & email          & User's email address             & varchar(191)  & Not Null             \\
+            \cline{2-5}
+                                       & password\_hash & User's encrypted password string & varchar(60)   & Not Null             \\
+            \cline{2-5}
+                                       & image          & User's profile image url         & varchar(256)  &                      \\
+            \cline{2-5}
+                                       & lang\_key      & User's prefered language key     & varchar(10)   &                      \\
+            \cline{2-5}
+                                       & avtivated      & User's account activation status & boolean       & Not Null             \\
+            \hline
+            Authority                  & name           & User authority (role)            & varchar(50)   & Id, Not Null         \\
+            \hline                                                                                                                \\
+        \end{tabular}
+    \end{table}
+\end{landscape}
+
+
+\noindent The figure \ref{r1-erd}  illustrates the entity-relationship diagram for our first release.
 
 \begin{figure}[hbt!]
     \centering
     \includesvg[width=\textwidth]{diagrams/database/r1-erd}
-    \caption{Entity-Relationship diagram of the first release}
+    \caption{The Entity-Relationship diagram of the first release}
     \label{r1-erd}
 \end{figure}
 
