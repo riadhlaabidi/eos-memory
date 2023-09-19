@@ -41,7 +41,7 @@ form the foundation of the system's functionality.
 
 \noindent The functional requirements we captured for each actor are outlined below.
 
-\paragraph{Authentication and Profile settings}
+\paragraph*{Authentication and Profile settings}
 \label{common-req}
 \begin{itemize}
       \item \textbf{Sign in:} A registered user should be able to access the system by providing
@@ -53,7 +53,7 @@ form the foundation of the system's functionality.
 \raggedbottom
 
 
-\paragraph{Administrator requirements}
+\paragraph*{Administrator requirements}
 \label{admin-req}
 \begin{itemize}
       \item \textbf{Manage agents:} An administrator should be able to add new agents, update,
@@ -65,7 +65,7 @@ form the foundation of the system's functionality.
 \end{itemize}
 
 
-\paragraph{Agent requirements}
+\paragraph*{Agent requirements}
 \label{agent-req}
 \begin{itemize}
       \item \textbf{Manage templates:} An agent should be able to create new notification templates, update and
@@ -77,7 +77,7 @@ form the foundation of the system's functionality.
       \item \textbf{View logs:} An agent should be able to view logs of sent notifications and their statuses.
 \end{itemize}
 
-\paragraph{Client requirements}
+\paragraph*{Client requirements}
 \label{client-req}
 \begin{itemize}
       \item \textbf{Manage notification preference:} A client should be able to edit his notification preferences,
@@ -86,25 +86,6 @@ form the foundation of the system's functionality.
             notifications (for in-app notifications).
 \end{itemize}
 
-\subsection{Non-Functional requirements}
-\label{nfr}
-When designing a notification system, various technical requirements need to be considered to ensure
-its effectiveness, reliability, and scalability. Here are the key requirements that should be addressed:
-
-\begin{itemize}
-      \item \textbf{Security:} The system shall enforce secure communication protocols, such as \acrshort{https},
-            to protect sensitive data during transmissionn, also data and preferences stored in the system shall be securely
-            encrypted to prevent unauthorized access or data breaches.
-      \item \textbf{Real-time:} The system shall deliver notifications in real-time or near real-time
-            to ensure timely communication, messages and notifications should be delivered with minimal delay for high
-            priority topics.
-      \item \textbf{Scalability:} The system should be designed to handle a high volume of concurrent users
-            and notifications without compromising performance and the system architecture should be scalable, allowing for
-            horizontal scaling by adding more servers or utilizing cloud-based infrastructure as the user base grows.
-      \item \textbf{Customizability:} The system should provide flexibility and customizability to meet
-            the specific branding and user experience requirements of different organizations. Also the system should
-            allow customization of user preferences to provide a personalized experience.
-\end{itemize}
 
 \section{Scrum implementation overview}
 \label{spec}
@@ -115,9 +96,7 @@ of the sprints.
 \subsection{Global use case diagram}
 Using \acrshort{uml} use case diagrams to model the requirements allows for a visual representation
 of the interactions between actors and the system, providing a clear and concise way to specify
-the functionalities and behaviors expected from the product.
-
-The figure \ref{g-usecase} illustrates the global use case diagram we modeled for our notification system: \\
+the functionalities and behaviors expected from the product. The figure \ref{g-usecase} illustrates the global use case diagram we modeled for our notification system.
 
 \begin{figure}[hbt!]
       \centering
@@ -187,11 +166,11 @@ ever-evolving list of features, functionalities, and enhancements desired for a 
       \hline
       \multirow[t]{4}{5em}{Notification templates management} & \textbf{Create a template}: As an agent, I want to be able to add notification templates so that I can send notifications based on that template.                                            \\
       \cline{2-2}
-                                                              & \textbf{List channels}: As an agent, I want to be able to list notification templates so that I can view all created templates.                                                              \\
+                                                              & \textbf{List templates}: As an agent, I want to be able to list notification templates so that I can view all created templates.                                                             \\
       \cline{2-2}
-                                                              & \textbf{Edit a channel}: As an agent, I want to be able to edit notification templates so that I can keep them up to date.                                                                   \\
+                                                              & \textbf{Edit a template}: As an agent, I want to be able to edit notification templates so that I can keep them up to date.                                                                  \\
       \cline{2-2}
-                                                              & \textbf{Delete a channel}: As an agent, I want to be able to delete templates so that I can get rid of no longer used templates.                                                             \\
+                                                              & \textbf{Delete a template}: As an agent, I want to be able to delete templates so that I can get rid of no longer used templates.                                                            \\
       \hline
       Notification preferences management                     & \textbf{Set notification preferences}: As a user, I want to be able to set my notification preferences, so that I can receive notifications from the channels I want.                        \\
       \hline
@@ -215,11 +194,12 @@ ever-evolving list of features, functionalities, and enhancements desired for a 
 A release refers to the deployment of a specific version or update of a software product. It involves meticulous planning
 and coordination to ensure successful delivery.
 
-In the following table, we present the detailed planning of the releases, outlining the sprints included in each release,
-and the epics included in each sprint. \\
+In the following table \ref{sprint-planning}, we present the detailed planning of the releases, outlining the sprints included in each release,
+and the epics included in each sprint.
 
 \begin{table}[hbt!]
       \caption{Releases and sprints planning}
+      \label{sprint-planning}
       \begin{tabular}{ | m{0.25\textwidth} | m{0.25\textwidth} | m{0.42\textwidth} | }
             \hline
             \textbf{Release}                                                                             & \textbf{Sprints}            & \textbf{Epics}                      \\
@@ -252,9 +232,32 @@ and the epics included in each sprint. \\
 
 \section{Development infrastructure}
 In this section, we will discuss the development infrastructure established for the successful execution
-of the project. The primary focus will be on the software architecture. Additionally, we will elaborate
-on the database choice and the curated set of tools and frameworks that were employed to support and
-streamline the development workflow.
+of the project. Our primary focus will be on defining the non-functional factors that are crucial for our
+product, then based on these factors, we'll proceed to discuss the software architecture, the database choice,
+and the curated set of tools and frameworks that were employed to support and streamline the development workflow.
+
+\subsection{Non-Functional requirements}
+\label{nfr}
+When designing a notification system, various technical requirements need to be considered to ensure
+the solution's effectiveness, reliability, and scalability. Here are the key factors that we should
+focus on while architecturing our system:
+
+\begin{itemize}
+      \item \textbf{Security:} The system shall enforce secure communication protocols, such as \acrshort{https},
+            to protect sensitive data during transmissionn, also data and preferences stored in the system shall be securely
+            encrypted to prevent unauthorized access or data breaches.
+            % \item \textbf{High availability} The system should remain operational and accessible to users without
+            %       significant downtime, even in the face of hardware failures, software issues, or unexpected events.
+      \item \textbf{Real-time:} The system shall deliver notifications in real-time or near real-time
+            to ensure timely communication, messages and notifications should be delivered with minimal delay for high
+            priority topics.
+      \item \textbf{Scalability:} The system should be designed to handle a high volume of concurrent users
+            and notifications without compromising performance and the system architecture should be scalable, allowing for
+            horizontal scaling by adding more servers or utilizing cloud-based infrastructure as the user base grows.
+      \item \textbf{Customizability:} The system should provide flexibility and customizability to meet
+            the specific branding and user experience requirements of different organizations. Also the system should
+            allow customization of user preferences to provide a personalized experience.
+\end{itemize}
 
 
 \subsection{Software architecture}
@@ -279,17 +282,17 @@ of development and deployment to quickly get the application started.
       \label{monolithic}
 \end{figure}
 
-\paragraph{Presentation tier:}
+\paragraph*{Presentation tier:}
 The presentation tier is the user interface and communication layer of the application. Its main purpose
 is to display information to users and gather information from them. This top-level tier can run on a web
 browser, as desktop application, or a graphical user interface.
 
-\paragraph{Application tier:}
+\paragraph*{Application tier:}
 In this tier, the data collected in the presentation tier is processed, sometimes against other
 information in the data tier, using business logic, a specific set of business rules. The application
 tier can also add, delete or modify data in the data tier.
 
-\paragraph{Data tier:}
+\paragraph*{Data tier:}
 The data tier, sometimes called database tier, data access tier or back-end, is where the information
 processed by the application is stored and managed. This can be a relational database management system
 or a NoSQL Database server.
@@ -299,9 +302,154 @@ different tiers. They are physically separated.
 
 % TODO: Illustraion if needed for components
 
-% A thin client is a client that holds just the user interface of the application. It contains no business logic of any sort. For every action, the client sends a request to the backend server, just like in a three-tier application.
 
-\subsection{Database}
+\subsection{Technology stack and framework selection}
+In this part, we will delve into the technology stack and frameworks adopted for our project.
+This includes considerations for the back end, front end, and database components. By specifying
+these choices, we gain a clear understanding of the tools driving the development of our project.
+
+\subsubsection{JHipster Platform}
+In our quest of identifying efficient tools to expedite the development of an enterprise-level solution,
+we conducted research with a key focus on meeting the technical factors we envisioned. Our goal was to
+pinpoint a solution that not only accelerates project initiation but also empowers our team to concentrate
+on the core application logic while satisfying these crucial requirements.
+
+We have reached a decision to adopt \textbf{JHipster} as the foundation for our project development.
+JHipster is a development platform to quickly generate, develop, and deploy modern web applications
+and microservice architectures \cite{jhipster}.
+
+\noindent The value proposition that JHipster provides is reflected in:
+
+\begin{itemize}
+      \item The creation of fully configured applications for both the front and the back ends.
+            In addition to the generation of code according to best practices and coding standards,
+            ensuring a high level of code quality and consistency throughout the project.
+      \item JHipster's integrated DevOps and \acrshort{cicd} capabilities provide a seamless pathway
+            to automate testing, deployment, and delivery processes.
+\end{itemize}
+
+JHipster provides flexibility and options, for the back end, it primarily supports Spring Boot,
+a popular Java-based framework which we discuss in detail in the following section \ref{sst}. On the front end
+side, JHipster offers a variety of choices including Angular, React and Vue, we elaborate on our choice for
+the front end technology in section \ref{cst}.
+
+In conjunction with JHipster, we employed various complementary software tools to enhance
+the development process. (see Appendix \ref{appendix:tools})
+
+\subsubsection{Server-side technology}
+\label{sst}
+This section delves into the technology considerations for the backend part of our solution and the
+employed internal architectural pattern. \\
+
+\paragraph{Spring Boot framework} \mbox{} \newline \newline
+\textbf{Spring Boot} emerged as the backend technology for our project.
+Spring Boot is built upon the robust Spring framework, makes developing production-grade Spring based
+web application and microservices faster and easier through three core capabilities:
+
+\begin{itemize}
+      \item \textbf{Auto Configuration:} Spring Boot comes with built-in autoconfiguration capabilities,
+            it automatically configures both the underlying Spring Framework and third-party packages based
+            on the provided settings.
+      \item \textbf{Opinionated approach:}  Spring Boot chooses which packages to install and which default
+            values to use, rather than requiring the developer to make all those decisions on their own and set
+            up everything manually.
+      \item \textbf{Standalone applications:} Spring Boot helps developers create standalone
+            that run on their own, without relying on an external web server, by embedding a web server such as
+            Tomcat into the application during the initialization process.
+\end{itemize}
+
+\paragraph{Spring boot flow architecture} \mbox{} \newline \newline
+Spring Boot uses a hierarchical architecture in which each layer communicates with the layer immediately
+below or above it as shown in the figure \ref{layers}. \\
+
+\begin{figure}[hbt!]
+      \centering
+      \includesvg[width=0.7\textwidth]{app/spring-boot-layers}
+      \caption{Spring Boot application layers}
+      \label{layers}
+\end{figure}
+
+\begin{enumerate}
+      \item \textbf{Presentation Layer}: The top layer of the spring boot architecture. It consists of views.
+            It handles the \acrshort{http} requests and performs authentication. It is responsible for converting the \acrfull{json}
+            field’s parameter to java objects and vice-versa. Once it performs the authentication of the request
+            it passes it to the next layer.
+      \item \textbf{Business Layer}: Contains all the business logic. It consists of multiple service classes
+            and is responsible for validation and authorization.
+      \item \textbf{Persistence Layer}: Implements all the database storage logic and it is responsible for
+            converting business objects to the database records and vice-versa.
+      \item \textbf{Database Layer}: This layer provides integration with multiple databases. It is
+            responsible for performing the \acrshort{crud} operations.
+\end{enumerate}
+
+\noindent Spring Boot integrates almost all of the features and modules of the Spring framework: like Spring MVC,
+Spring Core, Spring Data \& \acrshort{jpa}, etc. It follows nearly the same architectural pattern as
+Spring MVC, except for one thing: there is no need for \acrfull{dao} and \acrshort{dao} Implementation
+classes in Spring boot because its architecture has a data access layer and performs \acrshort{crud}
+operations. \\
+
+
+% Spring flow architecture illustration
+\begin{figure}[hbt!]
+      \centering
+      \includesvg[width=0.85\textwidth]{app/spring-flow}
+      \caption{Spring Boot flow architecture}
+      \label{flow}
+\end{figure}
+
+Controllers are the major components in Spring’s \acrshort{mvc} framework. Their primary job is to handle
+\acrshort{http} requests and either hand off a request to a view to render HTML or like in our case
+write data directly to the body of the response as \acrshort{json} \cite{spring-in-action}.
+
+In order to perform business logic on data, controllers call service classes from the service layer,
+which in turn inject repository classes to manipulate data in the database, and all entities are mapped
+to model classes through the \acrfull{jpa}
+
+
+\subsubsection{Client-side technology}
+\label{cst}
+This section illustrates the chosen technology for the client side of our solution and the adopted
+internal architectural pattern.
+
+\paragraph{Angular framework} \mbox{} \newline \newline
+For the user facing part of our solution, we will select the \textbf{Angular} frontend framework.
+Angular, developed and maintained by Google, is a development platform, built on TypeScript and
+includes:
+\begin{itemize}
+      \item A component-based framework for building scalable web applications.
+      \item A collection of well-integrated libraries that cover a wide variety of features,
+            including routing, forms management, client-server communication, etc.
+      \item A suite of developer tools to help develop, build, test, and update code \cite{angular}. \\
+\end{itemize}
+
+
+\paragraph{Angular architectural pattern} \mbox{} \newline \newline
+Angular follows a component-based architectural pattern that aligns closely with the
+\acrfull{mvvm} pattern, a design paradigm that separates concerns in frontend
+development. While Angular's terminologies don't exactly match \acrshort{mvvm},
+the concepts map as follows: \\
+
+\begin{figure}[hbt!]
+      \centering
+      \includesvg[width=0.85\textwidth]{app/mvvm}
+      \caption{\acrshort{mvvm} architectural pattern}
+      \label{mvvm}
+\end{figure}
+
+\*{Model:} Corresponds to business logic encapsulated within services and components.
+Services encapsulate data retrieval and manipulation, and act as the bridge between
+the application and external data sources.
+
+\paragraph*{View:} Corresponds to the HTML templates in Angular. Templates define the structure and
+appearance of the user interface. Angular's binding mechanisms (property binding, event binding,
+and two-way binding) facilitate the synchronization between the model (data) and the view (UI).
+
+\paragraph*{ViewModel:} Is represented by the component class. The component class contains
+the presentation logic, handling user interactions, processing data, and managing the application's state.
+It orchestrates the communication between the model and the view, ensuring that changes in one are
+reflected appropriately in the other.
+
+\subsubsection{Database}
 Selecting the appropriate database is a pivotal decision in our system design. After careful consideration,
 we've chosen to employ a relational database, specifically \textbf{PostgreSQL}. This choice is driven by the
 following criteria:
@@ -319,124 +467,6 @@ following criteria:
 \noindent PostgreSQL is an open source object-relational database system that has a strong reputation for its
 reliability, flexibility, and support of open technical standards. PostgreSQL comes with many features
 aimed to help developers build applications and help managing higher data loads.
-
-% \subsection{Technology Stack and Framework Selection}
-% In this part, we will delve into the technology stack and frameworks adopted for our project.
-% This includes considerations for both backend and frontend components. By examining these choices,
-% we gain a clear understanding of the tools driving the development of our project.
-
-\subsection{Server-side technology}
-This section delves into the technology considerations for the backend part of our solution and the
-employed internal architectural pattern.
-
-\subsubsection{Spring Boot framework}
-\textbf{Spring Boot} emerged as the optimal backend technology for our project.
-Spring Boot is built upon the robust Spring framework, makes developing production-grade Spring based
-web application and microservices faster and easier through three core capabilities:
-
-\begin{itemize}
-      \item \textbf{Auto Configuration:} Spring Boot comes with built-in autoconfiguration capabilities,
-            it automatically configures both the underlying Spring Framework and third-party packages based
-            on the provided settings.
-      \item \textbf{Opinionated approach:}  Spring Boot chooses which packages to install and which default
-            values to use, rather than requiring the developer to make all those decisions on their own and set
-            up everything manually.
-      \item \textbf{Standalone applications:} Spring Boot helps developers create standalone
-            that run on their own, without relying on an external web server, by embedding a web server such as
-            Tomcat into the application during the initialization process.
-\end{itemize}
-
-\subsubsection{Spring boot flow architecture}
-Spring Boot uses a hierarchical architecture in which each layer communicates with the layer immediately
-below or above it as shown in the figure \ref{layers}. \\
-
-\begin{figure}[hbt!]
-      \centering
-      \includesvg[width=0.7\textwidth]{app/spring-boot-layers}
-      \caption{Spring Boot application layers}
-      \label{layers}
-\end{figure}
-
-\noindent Spring Boot integrates almost all of the features and modules of the Spring framework: like Spring MVC,
-Spring Core, Spring Data \& JPA, etc. It follows nearly the same architectural pattern as
-Spring MVC, except for one thing: there is no need for \acrfull{dao} and \acrshort{dao} Implementation
-classes in Spring boot because its architecture has a data access layer and performs \acrshort{crud}
-operations. \\
-
-% Spring flow architecture illustration
-\begin{figure}[hbt!]
-      \centering
-      \includesvg[width=0.85\textwidth]{app/spring-flow}
-      \caption{Spring Boot flow architecture}
-      \label{flow}
-\end{figure}
-
-
-\subsection{Client-side technology}
-This section illustrates the chosen technology for the client side of our solution and the adopted
-internal architectural pattern.
-
-\subsubsection{Angular framework}
-For the user facing part of our solution, we will select the \textbf{Angular} frontend framework.
-Angular, developed and maintained by Google, is a development platform, built on TypeScript and
-includes:
-\begin{itemize}
-      \item A component-based framework for building scalable web applications.
-      \item A collection of well-integrated libraries that cover a wide variety of features,
-            including routing, forms management, client-server communication, etc.
-      \item A suite of developer tools to help develop, build, test, and update code \cite{angular}.
-\end{itemize}
-\raggedbottom
-
-\subsubsection{Angular architectural pattern}
-
-Angular follows a component-based architectural pattern that aligns closely with the
-\acrfull{mvvm} pattern, a design paradigm that separates concerns in frontend
-development. While Angular's terminologies don't exactly match \acrshort{mvvm},
-the concepts map as follows: \\
-
-\begin{figure}[hbt!]
-      \centering
-      \includesvg[width=0.85\textwidth]{app/mvvm}
-      \caption{\acrshort{mvvm} architectural pattern}
-      \label{mvvm}
-\end{figure}
-
-\paragraph{Model:} Corresponds to business logic encapsulated within services and components.
-Services encapsulate data retrieval and manipulation, and act as the bridge between
-the application and external data sources.
-
-\paragraph{View:} Corresponds to the HTML templates in Angular. Templates define the structure and
-appearance of the user interface. Angular's binding mechanisms (property binding, event binding,
-and two-way binding) facilitate the synchronization between the model (data) and the view (UI).
-
-\paragraph{ViewModel:} Is represented by the component class. The component class contains
-the presentation logic, handling user interactions, processing data, and managing the application's state.
-It orchestrates the communication between the model and the view, ensuring that changes in one are
-reflected appropriately in the other.
-
-\subsection{JHipster Platform}
-In our quest to identify effective tools for accelerating the development of an enterprise-level solution
-while minimizing the burdens of boilerplate code and other repetitive tasks, we conducted a research.
-Our objective was to pinpoint a solution that not only expedites project initiation but also empowers
-our team to concentrate on the core application logic.
-
-We have chosen \textbf{JHipster} as the foundation for our project development. JHipster is a development
-platform to quickly generate, develop, and deploy modern web applications and microservice
-architectures \cite{jhipster}.
-
-\noindent The value proposition that JHipster provides is reflected in:
-
-\begin{itemize}
-      \item The creation of fully configured applications for both the front and the back ends.
-            In addition to the generation of code according to best practices and coding standards,
-            ensuring a high level of code quality and consistency throughout the project.
-      \item JHipster's integrated DevOps and \acrshort{cicd} capabilities provide a seamless pathway to automate
-            testing, deployment, and delivery processes.
-\end{itemize}
-
-\noindent In conjunction with JHipster, we employed various complementary software tools to enhance
-the development process. (see Appendix \ref{appendix:tools})
 
 \phantomsection
 \section*{Summary}
