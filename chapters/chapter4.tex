@@ -167,7 +167,16 @@ we find most significant to drive the enhancements planned for this release.
 \end{longtable}
 
 \section{Design}
+Building upon the insights gained from the initial design, this phase focuses on refining and expanding our
+software's architecture. In this section, we will explore the key considerations, decisions, and advancements
+made during this second release.
+
 \subsection{Class diagrams}
+we have expanded our design to include five pivotal classes. These classes play a fundamental role in
+implementing the user stories related to notification management. They encompass critical aspects such
+as notification topics, templates, triggers, subscribers' notification preferences, and the core functionality of
+notifications—both for sending and maintaining a historical record. This section delves into the structure
+and relationships of these classes. \\
 
 \begin{longtable}{ | m{0.3\textwidth} | m{0.645\textwidth} | }
     \caption{Classes description}                                                                                                               \\
@@ -194,6 +203,9 @@ we find most significant to drive the enhancements planned for this release.
     \hline
 \end{longtable}
 
+\noindent In the following figure \ref{r2-class} we illustrate the extention of our class diagram, we highlighted
+newly added classes among others for a better readability.
+
 \begin{landscape}
     \begin{figure}[hbt!]
         \centering
@@ -210,6 +222,14 @@ defining new tables and relationships for the implementation of this second rele
 \subsubsection{Data dictionary}
 In the following table \ref{tab-r2dd}, we provide a comprehensive overview of the essential data elements
 that will define our entities and relationships for the second release.
+
+\subsubsection{Logical data model}
+Building upon the foundation laid in our initial logical data model, we enter a phase of refinement and
+expansion. In this section, we present the second iteration of our logical data model, which encapsulates
+the newly added entities during this second release. This updated data model will offer
+deeper insights into the structure and relationships of our data entities for the whole solution.
+
+\noindent The figure \ref{r2-erd} illustrates the updated entity-relationship diagram for this second release.
 
 \begin{landscape}
     \begin{longtable}{ | m{0.225\textwidth} | m{0.28\textwidth} | m{0.55\textwidth} | m{0.15\textwidth} | m{0.2\textwidth} | }
