@@ -172,7 +172,7 @@ software's architecture. In this section, we will explore the key considerations
 made during this second release.
 
 \subsection{Class diagrams}
-we have expanded our design to include five pivotal classes. These classes play a fundamental role in
+We have expanded our design to include five pivotal classes. These classes play a fundamental role in
 implementing the user stories related to notification management. They encompass critical aspects such
 as notification topics, templates, triggers, subscribers' notification preferences, and the core functionality of
 notifications—both for sending and maintaining a historical record. This section delves into the structure
@@ -341,20 +341,29 @@ deeper insights into the structure and relationships of our data entities for th
 In the subsequent section, we revisit the dynamic facets of our software solution through further
 representation of the interactions and communication behaviors of components and actors within our system.
 
-For this release we are going to focus on describing the process of creating a new notification trigger and
-creating a notification template, as we found those two functionalities to be the most important steps in
+For this release we are going to focus on describing the process of creating notification templates
+and triggers, as we found those two functionalities to be the most important steps in
 order to be able to send notifications through our platform.
 
 \subsubsection{Sequence diagram for creating a template}
+Agents can create templates by selecting the notification type and filling the required information. Agents
+can test templates before saving, in this case a REST request is made to the server which calls the service
+layer to configure and send the test notification.
 
+When the agent proceeds to saving the template, a different REST request is sent to the server.
+The controller validates the request and calls the template service to map the data received to a template
+entity which is later saved by the repository in the database. The conroller finally sends a response back
+to the client indicating the success or failure of the operation.
+
+\noindent The figure \ref{seq-create-template} illustrates the sequence diagram for creating a notification template.
 
 \subsubsection{Sequence diagram for creating a trigger}
 In order to create a trigger, an administrator/agent selects a specific notification template, chooses a target
-audience, specifiess a delivery type (one-time or recurring), sets the frequency, and defines a start and end
+audience, specifies a delivery type (one-time or recurring), sets the frequency, and defines a start and end
 date for recurring deliveries. Then the update component processes the user's input and formulates, through
 its service layer, a request to the backend for creating a notification trigger.
 
-The Spring controller receives the REST API request and processes the incoming data. It validates the input
+The controller receives the REST request and processes the incoming data. It validates the input
 and interacts with the service layer. The service layer ensures that the chosen notification template and
 audience exist, the dates and delivery type are valid, then it schedules an internal trigger based on those
 configurations. The reference for the internal trigger is then linked with the notification trigger we are
@@ -366,6 +375,14 @@ a response back to the cient indicating that the notification trigger has been c
 
 \noindent The figure \ref{seq-create-trigger} illustrates the sequence diagram for creating a notification trigger.
 
+\begin{landscape}
+    \begin{figure}[hbt!]
+        \centering
+        \includesvg[width=1.55\textwidth]{diagrams/sequence/seq-create-template}
+        \caption{Sequence diagram for creating a notification template}
+        \label{seq-create-template}
+    \end{figure}
+\end{landscape}
 
 \begin{landscape}
     \begin{figure}[hbt!]
@@ -377,8 +394,17 @@ a response back to the cient indicating that the notification trigger has been c
 \end{landscape}
 
 \section{Implementation}
+Building upon the foundation laid in our first release, we showcase the evolution and refinement of
+our solution, highlighting the advancements made to meet our user requirements for this second release.
 
 \subsection{Templates management}
+To be able to send notifications, first agents have to create a template by providing a name, selecting
+a specific topic for the template and choosing the template type (whether it's an email, sms, push or
+chat notification). Agents then should fill the template content, adding placeholders for dynamic data
+in the template body content, selecting and uploading an image if it is the case for the chosen type
+(as for the chat template), and if they want to test the template before saving they can do so by
+clicking the "Send test" button, else they can proceed to saving by clicking on "Save".
+
 \begin{figure}[hbt!]
     \centering
     \includegraphics[width=\textwidth]{app/template1}
@@ -387,6 +413,19 @@ a response back to the cient indicating that the notification trigger has been c
 \end{figure}
 
 \subsection{Triggers management}
+Creating a notification trigger involves selecting a notification template and a target audience,
+choosing a delivery type (one-time or recurring), and setting the associated parameters, including frequency,
+start date, and end date.
+
+The figure \ref{ss-create-trigger} shows the actual creation form where we selected an SMS test template,
+all SMS subscribers audience, the one time delivery type, and chose the option to send immediately.
+This option eliminates the need to specify a start date.
+
+On saving success, the client navigates back to the notification triggers listing page, where we can
+see our created at the top of the list, showing its important details. Notice the status of the trigger
+is now set to "Running" while it is sending notifications. Upon acheiving, the status will change to "Complete"
+as shown for the older triggers in the figure \ref{ss-triggers}.
+
 
 \begin{figure}[hbt!]
     \centering
@@ -405,4 +444,11 @@ a response back to the cient indicating that the notification trigger has been c
 
 \phantomsection
 \section*{Summary}
+
+
 \addcontentsline{toc}{section}{Summary}
+In this chapter, we focused on the second release of our project, which centers around improving
+the notification sending processs. We started by specifying requirements related to this release,
+and delve into crucial design aspects to transform those requirements into actual implementations.
+Finally, we highlight our progress by showcasing visual representations of features covering
+templates and triggers management to enhance our notification system.
