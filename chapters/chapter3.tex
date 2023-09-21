@@ -131,15 +131,19 @@ team and that each user story is comprehensively documented. This table will inc
     \end{itemize}
     \paragraph*{Business rules} \mbox{} \newline
     \begin{itemize}
-        \item Users should include a first and last name, email, a phone number and a country.
-        \item Administrators/Agents shouldn’t be able to add a user with an already existing email or phone number.
+        \item Creation form should include a first and last name, email, a phone number,
+              a birthdate, a language key and a country.
+        \item Administrators/Agents should be able to download a file containing the data format
+              to respect when importing users from a file.
+        \item Administrators/Agents shouldn’t be able to add a user with an already existing
+              email or phone number.
         \item Administrators/Agents should be able to import a list of users from a file.
     \end{itemize}
     \paragraph*{Technical specification} \mbox{} \newline
     \begin{itemize}
         \item The email field should accept a valid email address.
-        \item The login form should include a "Forgot Password" link that allows the user to reset their password.
-
+        \item The phone number field should accept a valid phone number.
+        \item File import should accept only \acrshort{csv} files.
     \end{itemize}
     \paragraph*{Acceptance criteria} \mbox{} \newline
     \begin{itemize}
