@@ -96,7 +96,14 @@ of the sprints.
 \subsection{Global use case diagram}
 Using \acrshort{uml} use case diagrams to model the requirements allows for a visual representation
 of the interactions between actors and the system, providing a clear and concise way to specify
-the functionalities and behaviors expected from the product. The figure \ref{g-usecase} illustrates the global use case diagram we modeled for our notification system.
+the functionalities and behaviors expected from the product.
+
+Clients, acting as the base, can customize notification preferences and access their notification history.
+Agents, inheriting from clients, extend functionalities to include managing templates, triggers, audiences,
+and logs. Administrators, inheriting from agents, further enhance their capabilities to manage agents,
+channels, and topics. Agents and Administrators can sign in, edit profiles, and view statistics.
+
+\noindent The figure \ref{g-usecase} illustrates the global use case diagram we modeled for our notification system.
 
 \begin{figure}[hbt!]
       \centering
@@ -104,6 +111,8 @@ the functionalities and behaviors expected from the product. The figure \ref{g-u
       \caption{Notification Center global use case diagram}
       \label{g-usecase}
 \end{figure}
+
+\newpage
 
 \subsection{Product backlog}
 The Product Backlog serves as a dynamic and living artifact that captures and organizes the
@@ -113,12 +122,12 @@ ever-evolving list of features, functionalities, and enhancements desired for a 
       \item \textbf{Epic:} Is a large body of work that can be broken down into a number of smaller stories.
       \item \textbf{User story:} Is an informal, general explanation of a software feature written from the
             perspective of the end user or customer, in the form of: \\ “As a [persona], I [want to], [so that].” \\
-            % \item \textbf{Estimation:} An estimate of the overall effort required to fully implement a product
-            %       backlog item or any other piece of work, in our case we used the number of working hours. \\
 \end{itemize}
 
+\noindent The table \ref{tab-backlog} represents our product backlog.
+
 \begin{longtable}{ | m{0.18\textwidth}  | m{0.77\textwidth} | }
-      \caption{Product backlog}                                                                                                                                                                                                                               \\
+      \caption{Product backlog} \label{tab-backlog}                                                                                                                                                                                                           \\
       \hline
       \textbf{Epic}                                           & \textbf{User story}                                                                                                                                                                           \\
       \hline
@@ -161,7 +170,7 @@ ever-evolving list of features, functionalities, and enhancements desired for a 
                                                               & \textbf{List channels}: As an administrator/agent, I want to be able to list notification channels so that I can view all created channels.                                                   \\
       \cline{2-2}
                                                               & \textbf{Edit a channel}: As an administrator, I want to be able to edit notification channels so that I can update their configurations.                                                      \\
-      \cline{2-2}
+
                                                               & \textbf{Delete a channel}: As an administrator/agent, I want to be able to delete notification channels so that I can get rid of no longer used channels.                                     \\
       \hline
       \multirow[t]{4}{5em}{Notification templates management} & \textbf{Create a template}: As an agent, I want to be able to add notification templates so that I can send notifications based on that template.                                             \\
@@ -339,7 +348,7 @@ the development process (see Appendix \ref{appendix:tools}).
 \subsubsection{Server-side technology}
 \label{sst}
 This section delves into the technology considerations for the backend part of our solution and the
-employed internal architectural pattern. \\
+employed internal architectural pattern.
 
 \paragraph{Spring Boot framework} \mbox{} \newline \newline
 \textbf{Spring Boot} emerged as the backend technology for our project.
@@ -360,8 +369,7 @@ web application and microservices faster and easier through three core capabilit
 
 \paragraph{Spring boot flow architecture} \mbox{} \newline \newline
 Spring Boot uses a hierarchical architecture in which each layer communicates with the layer immediately
-below or above it as shown in the figure \ref{layers}. \\
-
+below or above it as shown in the figure \ref{layers}.
 \begin{figure}[hbt!]
       \centering
       \includesvg[width=0.7\textwidth]{app/spring-boot-layers}
@@ -389,7 +397,6 @@ classes in Spring boot because its architecture has a data access layer and perf
 operations. \\
 
 
-% Spring flow architecture illustration
 \begin{figure}[hbt!]
       \centering
       \includesvg[width=0.85\textwidth]{app/spring-flow}
