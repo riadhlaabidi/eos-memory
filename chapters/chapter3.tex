@@ -211,56 +211,8 @@ team and that each user story is comprehensively documented. This table will inc
 \section{Design}
 The design phase of software development is a critical step in the software development life cycle.
 It is the process of transforming the customer requirements into a detailed plan for how the software
-will be implemented. In this section we are going to focus on the design aspects related to the software
-and database design.
-
-\subsection{Class diagram}
-The class diagram provides a high-level overview of the system's structure, relationships,
-and interactions between different classes. It represents the static structure of the system,
-including classes, attributes, methods, and associations.
-
-\noindent The following table provides a description of each class being part of the first release design.
-
-\begin{longtable}{ | m{0.3\textwidth} | m{0.645\textwidth} | }
-    \caption{Classes description}                                                                                                               \\
-    \hline
-    \textbf{Class name}      & \textbf{Description}                                                                                             \\
-    \hline
-    \endfirsthead
-    \hline
-    \textbf{Class name}      & \textbf{Description}                                                                                             \\
-    \hline
-    \endhead
-    \endfoot
-    \hline
-    \endlastfoot
-    User                     & This class represents the user entity in our solution                                                            \\
-    \hline
-    Authority                & This class represents roles which are going to be assigned to users                                              \\
-    \hline
-    NotificationUser         & This class represents the target customers for receiving notifications                                           \\
-    \hline
-    Channel                  & This class represents the notification channels that are going to send notifications through to our target users \\
-    \hline
-    ServiceProvider          & This class models the credentials of the third party service to integrate with the channel                       \\
-    \hline
-    NotificationSubscription & This class models a user notification subscription to a specific notification channel                            \\
-    \hline
-    Audience                 & This class models a segment of notification user subscriptions selected based on a criteria                      \\
-    \hline
-    Criteria                 & This class models a selection criteria for an audience, it represents a filter, an operator, and a value         \\
-\end{longtable}
-
-
-\noindent The figure \ref{r1-class} illustrates the class diagram for our first release. \\
-
-
-\begin{figure}[hbt!]
-    \centering
-    \includesvg[width=\textwidth]{diagrams/class/r1-classp}
-    \caption{The class diagram of the first release}
-    \label{r1-class}
-\end{figure}
+will be implemented. In this section we are going to focus on the design aspects related to the database
+and the software.
 
 \subsection{Database design}
 In this section, We will discuss the structure and organization of our database, defining tables and relationships
@@ -407,8 +359,92 @@ of creating a logical data model is to develop a highly technical map of underly
     \label{r1-erd}
 \end{figure}
 
+\subsection{Software design}
+This phase is where we transition from defining the data structure to crafting the software's architecture
+and behavior. The software design section encompasses three crucial aspects: static modeling, dynamic modeling,
+and detailed design. Each of these facets plays a pivotal role in shaping a well-structured and efficient
+software solution. In this section, we will explore these components in-depth.
 
-\subsection{Sequence diagrams}
+\subsubsection{Static modeling}
+Static modeling serves as the blueprint that outlines how the various components of a software system
+interact, without considering their specific actions over time. One of the fundamental tools we rely upon
+to statically model our software systems is the class diagram. A class diagram provides a high-level overview
+of the system's static structure, attributes, methods, and associations between different classes.
+
+\noindent The following table provides a description of each class being part of the first release design.
+
+\begin{longtable}{ | m{0.3\textwidth} | m{0.645\textwidth} | }
+    \caption{Classes description}                                                                                                               \\
+    \hline
+    \textbf{Class name}      & \textbf{Description}                                                                                             \\
+    \hline
+    \endfirsthead
+    \hline
+    \textbf{Class name}      & \textbf{Description}                                                                                             \\
+    \hline
+    \endhead
+    \endfoot
+    \hline
+    \endlastfoot
+    User                     & This class represents the user entity in our solution                                                            \\
+    \hline
+    Authority                & This class represents roles which are going to be assigned to users                                              \\
+    \hline
+    NotificationUser         & This class represents the target customers for receiving notifications                                           \\
+    \hline
+    Channel                  & This class represents the notification channels that are going to send notifications through to our target users \\
+    \hline
+    ServiceProvider          & This class models the credentials of the third party service to integrate with the channel                       \\
+    \hline
+    NotificationSubscription & This class models a user notification subscription to a specific notification channel                            \\
+    \hline
+    Audience                 & This class models a segment of notification user subscriptions selected based on a criteria                      \\
+    \hline
+    Criteria                 & This class models a selection criteria for an audience, it represents a filter, an operator, and a value         \\
+\end{longtable}
+
+\noindent In order to establish a clear understanding of the structural relationships within our software system,
+we defined the following key associations:
+
+\begin{itemize}
+    \item A user can have many authorities, and an authority could be assigned to one or many users.
+    \item A user can create zero or more channels, but a channel is created by exactly one user.
+    \item A user can create zero or more audiences, but an audience is created by exactly one user.
+    \item A notification user can have zero or many subscriptions, but a notification subscription
+          belongs to exactly one notification user.
+    \item A channel can have exactly one service provider.
+    \item A channel can have zero or more subscriptions, but a subsciption is associated with exactly one channel.
+    \item An audience can have one or more selection criteria, but a selection criteria is for exactly one audience.
+\end{itemize}
+
+\noindent The figure \ref{r1-class} illustrates the class diagram for our first release. \\
+
+\begin{figure}[hbt!]
+    \centering
+    \includesvg[width=\textwidth]{diagrams/class/r1-class}
+    \caption{The class diagram of the first release}
+    \label{r1-class}
+\end{figure}
+
+\noindent We have taken an approach to separate the \texttt{User} class from the
+\texttt{NotificationUser} class. This separation is driven by two key considerations:
+
+\begin{itemize}
+    \item First, the \texttt{User} class (generated by JHipster) is tightly integrated into our
+          security and authentication system. Modifying this class directly is not recommended
+          due to the potential security and compatibility issues. Therefore, we have chosen not
+          to alter the existing \texttt{User} class using inheritance.
+
+    \item Second, the \texttt{User} class is primarily responsible for handling user authentication and
+          security-related aspects, ensuring the integrity of our application's security model. In contrast,
+          the \texttt{NotificationUser} class is designed exclusively for managing notification-related data,
+          such as subscriptions and audiences. By keeping these classes independent, we ensure that
+          \texttt{NotificationUser} entities remain independent from the authentication system and don't
+          have any unintended access to our platform.
+\end{itemize}
+
+
+\subsubsection{Dynamic modeling}
 In this section, we delve into the dynamic aspects of our software solution by employing \acrshort{uml}
 sequence diagrams. These diagrams provide a visual representation of the interactions and communication
 patterns among various components and actors within our system. As we explore these sequences,
@@ -416,7 +452,7 @@ we aim to shed light on the flow of information, the order of operations, and th
 between different elements in our software architecture.
 
 
-\subsubsection{Sequence diagram for Creating a channel}
+\paragraph{Sequence diagram for Creating a channel} \mbox{} \newline \newline
 First, we outline the process of creating notification channels, a critical functionality
 designed to integrate external notification delivery services within our solution.
 
@@ -428,7 +464,7 @@ or the credentials are invalid which cancels the request and asks the administra
 
 \noindent The following figure \ref{seq-create-channel} illustrates the sequence diagram for creating a channel.
 
-\subsubsection{Sequence diagram for creating an audience}
+\paragraph{Sequence diagram for creating an audience} \mbox{} \newline \newline
 For the user segmentation feature, both administrators and agents have the ability to create segments
 based on specific criteria.  This essential functionality enables them to precisely target user subscriptions
 with relevant notifications.
@@ -445,7 +481,7 @@ to keep users informed about the segments they are creating.
     \begin{figure}[hbt!]
         \centering
         \includesvg[width=1.55\textwidth]{diagrams/sequence/seq-create-channel}
-        \caption{Sequence diagram for Creating a Channel}
+        \caption{Sequence diagram for creating a channel}
         \label{seq-create-channel}
     \end{figure}
 \end{landscape}
@@ -456,6 +492,143 @@ to keep users informed about the segments they are creating.
         \includesvg[width=1.55\textwidth]{diagrams/sequence/seq-create-audience}
         \caption{Sequence diagram for creating an audience}
         \label{seq-create-audience}
+    \end{figure}
+\end{landscape}
+
+\subsubsection{Detailed Design}
+In this section we provide an in-depth look at various aspects of the detailed design process.
+This phase is a critical step that follows the high-level architecture and lays the foundation
+for the actual implementation of the system. It involves breaking down the system into smaller
+components, defining their interactions, and specifying how each component will function.
+
+\noindent Our solution encapsulates 15 packages in total for the back end part, which are described as follows:
+
+\begin{itemize}
+    \item \textbf{domain}: The \texttt{domain} package typically holds \acrshort{jpa} entities. These are
+          Java classes that represent the core data structures of the application. Each entity
+          class corresponds to a database table.
+    \item \textbf{domain.enumeration}: This package contains enumeration classes that define a set
+          of constant values or options for specific attributes or properties of the domain
+          entities.
+    \item \textbf{repository}: This package contains \acrshort{jpa} repositories. These are interfaces that
+          provide methods for querying and manipulating data in the database. Repositories interact with
+          domain objects for database operations.
+    \item \textbf{service}: The \texttt{service} package contains the business logic, those are service interfaces that
+          define the contract or \acrshort{api} for interacting with specific business entities. The methods
+          in these interfaces declare the operations that can be performed on those entities.
+          The service layer depends on the \texttt{repository} and \texttt{domain} packages to access and
+          manage data, the \texttt{config} package for service configurations, and the \texttt{logging}
+          package to write logs.
+    \item \textbf{service.criteria}: This package contains classes related to criteria-based querying.
+          These classes are used to build dynamic and complex queries to retrieve data from the
+          database based on various criteria or search parameters.
+    \item \textbf{service.dto}: This package contains \acrfullpl{dto}. \acrshortpl{dto} are used to transfer
+          data between the front-end and back-end layers of the application. They allow us to control
+          the data exposed to the client and can be customized to meet specific client requirements.
+    \item \textbf{service.impl}: This package houses the concrete implementation of service interfaces
+          defined in the service layer. These service classes contain the actual business logic
+          and functionalities of the application. This package depends on the \texttt{dto} and \texttt{mapper}
+          packages to convert data from the client to the database or vice versa.
+    \item \textbf{service.mapper}: This package contains mappers, which are used to convert data between
+          entities and \acrshortpl{dto} when transferring it between layers of the application.
+    \item \textbf{web.rest}: This package is responsible for handling \acrshort{http} requests and serving as the entry
+          point for our application's \acrshort{rest}ful \acrshort{api}. It contains \acrshort{rest} controllers,
+          which are annotated Java classes that handle incoming \acrshort{http} requests, process data,
+          and return \acrshort{http} responses in \acrshort{json} format. This package depends on
+          the \texttt{config} package for web configurations, the \texttt{service} package to handle business logic,
+          the \texttt{security} package to ensure integrity, and the \texttt{logging} package to write logs.
+    \item \textbf{web.rest.error}: This package is responsible for handling errors and exceptions in
+          \acrshort{rest}ful endpoints. It contains classes that handle various types of exceptions
+          and return appropriate error responses to clients.
+    \item \textbf{web.rest.vm}: This package houses view models for \acrshort{rest} endpoints. View models
+          are used to customize the data sent to clients, ensuring that sensitive information is not
+          exposed.
+    \item \textbf{security}: This package contains security-related classes. This includes Spring Security
+          configurations, custom user detail services, authentication providers, and other components responsible
+          for securing the application and handling user authentication and authorization. The security layer depends
+          on the \texttt{service} package to handle authorization logic, and the \texttt{logging} package
+          to write logs.
+    \item \textbf{security.jwt}: This package is responsible for handling \acrfull{jwt} authentication
+          and authorization in our application. \acrshort{jwt} is a compact and self-contained token
+          format that can be used to securely transmit information between parties for the purpose
+          of user authentication.
+    \item \textbf{config}: This package contains configuration classes. It includes various configuration
+          files for database connections, security settings, and other application-specific settings.
+          These configurations are essential for the proper functioning of our application.
+    \item \textbf{aop.logging}: This package contains aspects and configurations related to logging using
+          \acrfull{aop}. \acrshort{aop} allows us to separate concerns like logging from the business logic,
+          improving code modularity and maintainability. It also allows us to apply logging consistently
+          across our application without scattering log statements throughout the codebase. \\
+\end{itemize}
+
+
+\noindent The figure \ref{package-diagram} illustrates the package diagram for our solution's back end.
+
+\newpage
+
+\begin{figure}[hbt!]
+    \centering
+    \includesvg[width=\textwidth]{diagrams/package/package}
+    \caption{Package diagram of the back end}
+    \label{package-diagram}
+\end{figure}
+
+To provide a comprehensive understanding of feature implementations, we will illustrate the classes that
+are directly tied to the channel creation functionality, encompassing all layers of our Spring Boot
+application. This focused diagram serves as an extension of the previously introduced package diagram,
+allowing us to zoom in on the precise classes and their interconnections that drive the implementation
+of this essential feature.
+
+We have introduced an addition to our service layer: the \texttt{providers} package. This new package
+serves as a home for a collection of notification service providers, each catering to unique communication
+needs. Among the notable providers included are:
+\begin{itemize}
+    \item \textbf{Twilio}: Twilio provides programmable communication tools for making and receiving
+          phone calls, sending and receiving text messages, and performing other communication functions
+          using its web service \acrshortpl{api}.
+    \item \textbf{Messenger}: Messenger, developed by Meta, is an instant messaging app that is used
+          to send messages and exchange media.
+    \item \textbf{WhatsApp}: WhatsApp is a freeware, cross-platform, centralized instant messaging
+          service. It allows users to send text, voice video messages, and many other features.
+    \item \textbf{Slack}: Slack is a cloud-based freemium cross-platform instant messaging service
+          where users can communicate through text messaging, file and media sharing in private chats or
+          within communities called ``workspaces".
+    \item \textbf{Line}: Line is a freeware app for instant communications on electronic devices
+          such as smartphones, tablet computers and personal computers.
+    \item \textbf{Firebase cloud messaging}:  Firebase cloud messaging is a cross-platform cloud service
+          for messages and notifications for Android, iOS, and web applications.
+\end{itemize}
+
+To ensure a seamless and organized integration of these providers, we've implemented the
+Factory Method design pattern. This pattern is used to define an interface for creating an object,
+but let subclasses decide which class to instantiate \cite{patterns}. In this pattern the participants are:
+the \texttt{Product} which defines the interface of objects the factory method creates, the
+\texttt{ConcreteProduct} which implements the \texttt{Product} interface, the \texttt{Creator} which
+calls the factory method to create a \texttt{Product} object, and the \texttt{ConcreteCreator} which overrides
+the factory method to return an instance of a \texttt{ConcreteProduct}.
+
+A variation that we used on the pattern lets the factory method create multiple kinds of products.
+The factory method in the \texttt{ProviderFactory} class takes a parameter that identifies the kind of object
+to create (in our case it takes the \texttt{serviceProviderDTO}) and all of the
+aforementioned service provider objects the factory method creates will share the \texttt{Provider} interface
+which define methods to check integration validity and configure the external service provider.
+This strategic architecture empowers our application to dynamically select and utilize the most suitable
+notification service provider for a given parameter, enhancing the versatility and effectiveness of
+our communication capabilities.
+
+Notice also the use of Jhipster provided filters in the \texttt{ChannelCriteria} class. These filter
+classes are crucial for creating dynamic queries in our application. Instead of writing static queries
+with fixed conditions, we can use these filters to construct queries at runtime based on user input
+or changing criteria. Jhipster provides a list of filter for all primitive types, among those we illustrated
+just the \texttt{StringFilter} for brevity. It also gives the possibility to extend those filters
+to create complex objects filtering.
+
+\begin{landscape}
+    \begin{figure}[hbt!]
+        \centering
+        \includesvg[width=1.55\textwidth]{diagrams/class/detailed-1}
+        \caption{Class diagram for the channel creation feature}
+        \label{detailed-1}
     \end{figure}
 \end{landscape}
 
@@ -478,7 +651,6 @@ an authentication error, a red banner with the error message is displayed above 
     \caption{Authentication page}
     \label{ss-signin}
 \end{figure}
-
 
 The figure \ref{ss-reset} illustrates the implementation of the reset password page. A user is redirected to
 this interface when they click on the "Forgot your password?" link from the previous "Sign In" page,
