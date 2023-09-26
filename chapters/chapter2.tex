@@ -7,7 +7,8 @@ In this chapter, we place significant focus on gathering requirements and transf
 into well-defined and documented specifications. This includes creating use cases and user stories,
 which provide valuable insights into system interactions and user workflows. Furthermore, we establish
 a prioritized product backlog, ensuring efficient resource allocation and timely delivery of the most
-critical and valuable features.
+critical and valuable features. Finally, we emphasize defining the software architecture and making
+informed technologies and framework selection.
 
 \section{Requirements gathering}
 By conducting a comprehensive analysis of the requirements, we aim to bridge the gap between
@@ -96,7 +97,14 @@ of the sprints.
 \subsection{Global use case diagram}
 Using \acrshort{uml} use case diagrams to model the requirements allows for a visual representation
 of the interactions between actors and the system, providing a clear and concise way to specify
-the functionalities and behaviors expected from the product. The figure \ref{g-usecase} illustrates the global use case diagram we modeled for our notification system.
+the functionalities and behaviors expected from the product.
+
+Clients, acting as the base, can customize notification preferences and access their notification history.
+Agents, inheriting from clients, extend functionalities to include managing templates, triggers, audiences,
+and logs. Administrators, inheriting from agents, further enhance their capabilities to manage agents,
+channels, and topics. Agents and Administrators can sign in, edit profiles, and view statistics.
+
+\noindent The figure \ref{g-usecase} illustrates the global use case diagram we modeled for our notification system.
 
 \begin{figure}[hbt!]
       \centering
@@ -104,6 +112,8 @@ the functionalities and behaviors expected from the product. The figure \ref{g-u
       \caption{Notification Center global use case diagram}
       \label{g-usecase}
 \end{figure}
+
+\newpage
 
 \subsection{Product backlog}
 The Product Backlog serves as a dynamic and living artifact that captures and organizes the
@@ -113,80 +123,80 @@ ever-evolving list of features, functionalities, and enhancements desired for a 
       \item \textbf{Epic:} Is a large body of work that can be broken down into a number of smaller stories.
       \item \textbf{User story:} Is an informal, general explanation of a software feature written from the
             perspective of the end user or customer, in the form of: \\ “As a [persona], I [want to], [so that].” \\
-            % \item \textbf{Estimation:} An estimate of the overall effort required to fully implement a product
-            %       backlog item or any other piece of work, in our case we used the number of working hours. \\
 \end{itemize}
 
+\noindent The table \ref{tab-backlog} represents our product backlog.
+
 \begin{longtable}{ | m{0.18\textwidth}  | m{0.77\textwidth} | }
-      \caption{Product backlog}                                                                                                                                                                                                                              \\
+      \caption{Product backlog} \label{tab-backlog}                                                                                                                                                                                                           \\
       \hline
-      \textbf{Epic}                                           & \textbf{User story}                                                                                                                                                                          \\
+      \textbf{Epic}                                           & \textbf{User story}                                                                                                                                                                           \\
       \hline
       \endfirsthead
       \hline
-      \textbf{Epic}                                           & \textbf{User story}                                                                                                                                                                          \\
+      \textbf{Epic}                                           & \textbf{User story}                                                                                                                                                                           \\
       \hline
       \endhead
       \hline
       \endfoot
       \endlastfoot
-      Authentication                                          & \textbf{Authenticate}: As a registered user, I want to be able to log into my account securely using my email and password.                                                                  \\
+      Authentication                                          & \textbf{Authenticate}: As a registered user, I want to be able to log into my account securely using my email and password.                                                                   \\
       \hline
-      \multirow[t]{4}{5em}{Agents management}                 & \textbf{Create an agent}: As an administrator, I want to be able to create agents so that I can add them to the notification center.                                                         \\
+      \multirow[t]{4}{5em}{Agents management}                 & \textbf{Create an agent}: As an administrator, I want to be able to create agents so that I can add them to the notification center.                                                          \\
       \cline{2-2}
-                                                              & \textbf{List agents}: As an administrator, I want to be able to list agents so that I can view all registered agents.                                                                        \\
+                                                              & \textbf{List agents}: As an administrator, I want to be able to list agents so that I can view all registered agents.                                                                         \\
       \cline{2-2}
-                                                              & \textbf{Edit an agent}: As an administrator, I want to be able to edit agents so that I can modify their information.                                                                        \\
+                                                              & \textbf{Edit an agent}: As an administrator, I want to be able to edit agents so that I can modify their information.                                                                         \\
       \cline{2-2}
-                                                              & \textbf{Delete an agent}: As an administrator, I want to be able to delete agents so that I can get rid of no longer needed agents.                                                          \\
+                                                              & \textbf{Delete an agent}: As an administrator, I want to be able to delete agents so that I can get rid of no longer needed agents.                                                           \\
       \hline
-      \multirow[t]{4}{5em}{Users management}                  & \textbf{Create a notification user}: As an administrator/agent, I want to be able to create users so that I can send them notifications.                                                     \\
+      \multirow[t]{4}{5em}{Users management}                  & \textbf{Create a notification user}: As an administrator/agent, I want to be able to create users so that I can send them notifications.                                                      \\
       \cline{2-2}
-                                                              & \textbf{List notification users}: As an administrator/agent, I want to be able to list users so that I can view all created users.                                                           \\
+                                                              & \textbf{List notification users}: As an administrator/agent, I want to be able to list users so that I can view all created users.                                                            \\
       \cline{2-2}
-                                                              & \textbf{Edit a notification user}: As an administrator/agent, I want to be able to edit users so that I can modify their information.                                                        \\
+                                                              & \textbf{Edit a notification user}: As an administrator/agent, I want to be able to edit users so that I can modify their information.                                                         \\
       \cline{2-2}
-                                                              & \textbf{Delete a notification user}: As an administrator/agent, I want to be able to delete users so that I can get rid of no longer needed users.                                           \\
+                                                              & \textbf{Delete a notification user}: As an administrator/agent, I want to be able to delete users so that I can get rid of no longer needed users.                                            \\
       \hline
-      \multirow[t]{4}{5em}{Audience management}               & \textbf{Create an audience}: As an administrator/agent, I want to be able to create an audience so that I can target specific individuals based on a criteria.                               \\
+      \multirow[t]{4}{5em}{Audience management}               & \textbf{Create an audience}: As an administrator/agent, I want to be able to create an audience so that I can target specific individuals based on a criteria.                                \\
       \cline{2-2}
-                                                              & \textbf{List audiences}: As an administrator/agent, I want to be able to list audiences so that I can view all created user segments.                                                        \\
+                                                              & \textbf{List audiences}: As an administrator/agent, I want to be able to list audiences so that I can view all created user segments.                                                         \\
       \cline{2-2}
-                                                              & \textbf{Edit an audience}: As an administrator/agent, I want to be able to edit an audience so that I can change selection criteria and segment configurations.                              \\
+                                                              & \textbf{Edit an audience}: As an administrator/agent, I want to be able to edit an audience so that I can change selection criteria and segment configurations.                               \\
       \cline{2-2}
-                                                              & \textbf{Delete an audience}: As an administrator/agent, I want to be able to delete a group of users so that I can get rid of no longer needed groups..                                      \\
+                                                              & \textbf{Delete an audience}: As an administrator/agent, I want to be able to delete a group of users so that I can get rid of no longer needed groups..                                       \\
       \hline
-      \multirow[t]{4}{5em}{Notification channels management}  & \textbf{Create a channel}: As an administrator/agent, I want to be able to create notification channels so that I can send notifications through these channels.                             \\
+      \multirow[t]{4}{5em}{Notification channels management}  & \textbf{Create a channel}: As an administrator/agent, I want to be able to create notification channels so that I can send notifications through these channels.                              \\
       \cline{2-2}
-                                                              & \textbf{List channels}: As an administrator/agent, I want to be able to list notification channels so that I can view all created channels.                                                  \\
+                                                              & \textbf{List channels}: As an administrator/agent, I want to be able to list notification channels so that I can view all created channels.                                                   \\
       \cline{2-2}
-                                                              & \textbf{Edit a channel}: As an administrator, I want to be able to edit notification channels so that I can update their configurations.                                                     \\
-      \cline{2-2}
-                                                              & \textbf{Delete a channel}: As an administrator/agent, I want to be able to delete notification channels so that I can get rid of no longer used channels.                                    \\
+                                                              & \textbf{Edit a channel}: As an administrator, I want to be able to edit notification channels so that I can update their configurations.                                                      \\
+
+                                                              & \textbf{Delete a channel}: As an administrator/agent, I want to be able to delete notification channels so that I can get rid of no longer used channels.                                     \\
       \hline
-      \multirow[t]{4}{5em}{Notification templates management} & \textbf{Create a template}: As an agent, I want to be able to add notification templates so that I can send notifications based on that template.                                            \\
+      \multirow[t]{4}{5em}{Notification templates management} & \textbf{Create a template}: As an agent, I want to be able to add notification templates so that I can send notifications based on that template.                                             \\
       \cline{2-2}
-                                                              & \textbf{List templates}: As an agent, I want to be able to list notification templates so that I can view all created templates.                                                             \\
+                                                              & \textbf{List templates}: As an agent, I want to be able to list notification templates so that I can view all created templates.                                                              \\
       \cline{2-2}
-                                                              & \textbf{Edit a template}: As an agent, I want to be able to edit notification templates so that I can keep them up to date.                                                                  \\
+                                                              & \textbf{Edit a template}: As an agent, I want to be able to edit notification templates so that I can keep them up to date.                                                                   \\
       \cline{2-2}
-                                                              & \textbf{Delete a template}: As an agent, I want to be able to delete templates so that I can get rid of no longer used templates.                                                            \\
+                                                              & \textbf{Delete a template}: As an agent, I want to be able to delete templates so that I can get rid of no longer used templates.                                                             \\
       \hline
-      Notification preferences management                     & \textbf{Set notification preferences}: As a user, I want to be able to set my notification preferences, so that I can receive notifications from the channels I want.                        \\
+      Notification preferences management                     & \textbf{Set notification preferences}: As a user, I want to be able to set my notification preferences, so that I can receive notifications from the channels I want.                         \\
       \hline
-      \multirow[t]{4}{5em}{Notification triggers management}  & \textbf{Create a trigger}: As an agent, I want to be able to create triggers for notifications so that I can schedule notifications to be sent automatically.                                \\
+      \multirow[t]{4}{5em}{Notification triggers management}  & \textbf{Create a trigger}: As an agent, I want to be able to create triggers for notifications so that I can schedule notifications to be sent automatically.                                 \\
       \cline{2-2}
-                                                              & \textbf{List triggers}: As an agent, I want to be able to list triggers for notifications so that I can view all created triggers.                                                           \\
+                                                              & \textbf{List triggers}: As an agent, I want to be able to list triggers for notifications so that I can view all created triggers.                                                            \\
       \cline{2-2}
-                                                              & \textbf{Edit a trigger}: As an agent, I want to be able to edit notifications triggers so that I can modify or update its configurations.                                                    \\
+                                                              & \textbf{Edit a trigger}: As an agent, I want to be able to edit notifications triggers so that I can modify or update its configurations.                                                     \\
       \cline{2-2}
-                                                              & \textbf{Delete a trigger}: As an agent, I want to be able to delete notification triggers so that I can get rid of outdated and no longer used triggers.                                     \\
+                                                              & \textbf{Delete a trigger}: As an agent, I want to be able to delete notification triggers so that I can get rid of outdated and no longer used triggers.                                      \\
       \hline
-      \multirow[t]{4}{5em}{Notification history}              & \textbf{Get notification history}: As a user, I want to be able to list notification history so that I can review my received notifications whenever I want.                                 \\
+      \multirow[t]{4}{5em}{Notification history}              & \textbf{Get notification history}: As a user, I want to be able to list notification history so that I can review my received notifications whenever I want.                                  \\
       \cline{2-2}
-                                                              & \textbf{List sending logs}: As an administrator/agent, I want to be able to list sent notification logs so that I can review all sent notifications.                                         \\
+                                                              & \textbf{List sending logs}: As an administrator/agent, I want to be able to list sent notification logs so that I can review all sent notifications.                                          \\
       \hline
-      Dashboard                                               & \textbf{View metrics}: As an administrator/agent I want to be able to view metrics on my dashboard so that I can get an overview on important statistics related to notification activities. \\
+      Dashboard                                               & \textbf{View metrics}: As an administrator/agent, I want to be able to view metrics on my dashboard so that I can get an overview on important statistics related to notification activities. \\
       \hline
 \end{longtable}
 
@@ -194,7 +204,7 @@ ever-evolving list of features, functionalities, and enhancements desired for a 
 A release refers to the deployment of a specific version or update of a software product. It involves meticulous planning
 and coordination to ensure successful delivery.
 
-In the following table \ref{sprint-planning}, we present the detailed planning of the releases, outlining the sprints included in each release,
+In the table \ref{sprint-planning}, we present the detailed planning of the releases, outlining the sprints included in each release,
 and the epics included in each sprint.
 
 \begin{table}[hbt!]
@@ -302,7 +312,6 @@ different tiers. They are physically separated.
 
 % TODO: Illustraion if needed for components
 
-
 \subsection{Technology stack and framework selection}
 In this part, we will delve into the technology stack and frameworks adopted for our project.
 This includes considerations for the back end, front end, and database components. By specifying
@@ -334,12 +343,12 @@ side, JHipster offers a variety of choices including Angular, React and Vue, we 
 the front end technology in section \ref{cst}.
 
 In conjunction with JHipster, we employed various complementary software tools to enhance
-the development process. (see Appendix \ref{appendix:tools})
+the development process (see Appendix \ref{appendix:tools}).
 
 \subsubsection{Server-side technology}
 \label{sst}
 This section delves into the technology considerations for the backend part of our solution and the
-employed internal architectural pattern. \\
+employed internal architectural pattern.
 
 \paragraph{Spring Boot framework} \mbox{} \newline \newline
 \textbf{Spring Boot} emerged as the backend technology for our project.
@@ -360,8 +369,7 @@ web application and microservices faster and easier through three core capabilit
 
 \paragraph{Spring boot flow architecture} \mbox{} \newline \newline
 Spring Boot uses a hierarchical architecture in which each layer communicates with the layer immediately
-below or above it as shown in the figure \ref{layers}. \\
-
+below or above it as shown in the figure \ref{layers}.
 \begin{figure}[hbt!]
       \centering
       \includesvg[width=0.7\textwidth]{app/spring-boot-layers}
@@ -372,8 +380,7 @@ below or above it as shown in the figure \ref{layers}. \\
 \begin{enumerate}
       \item \textbf{Presentation Layer}: The top layer of the spring boot architecture. It consists of views.
             It handles the \acrshort{http} requests and performs authentication. It is responsible for converting the \acrfull{json}
-            field’s parameter to java objects and vice-versa. Once it performs the authentication of the request
-            it passes it to the next layer.
+            field’s parameter to java objects and vice-versa. Then passes the request to the next layer.
       \item \textbf{Business Layer}: Contains all the business logic. It consists of multiple service classes
             and is responsible for validation and authorization.
       \item \textbf{Persistence Layer}: Implements all the database storage logic and it is responsible for
@@ -389,7 +396,6 @@ classes in Spring boot because its architecture has a data access layer and perf
 operations. \\
 
 
-% Spring flow architecture illustration
 \begin{figure}[hbt!]
       \centering
       \includesvg[width=0.85\textwidth]{app/spring-flow}
@@ -424,30 +430,46 @@ includes:
 
 
 \paragraph{Angular architectural pattern} \mbox{} \newline \newline
-Angular follows a component-based architectural pattern that aligns closely with the
-\acrfull{mvvm} pattern, a design paradigm that separates concerns in frontend
-development. While Angular's terminologies don't exactly match \acrshort{mvvm},
-the concepts map as follows: \\
+The architecture of an Angular application relies on certain fundamental concepts. The basic building
+blocks of the Angular framework are Angular components that are organized into \texttt{NgModules}.
+\texttt{NgModules} collect related code into functional sets which define an Angular application.
+An application always has at least a root module that enables bootstrapping, and typically has many
+more feature modules. \\ \newline
 
 \begin{figure}[hbt!]
       \centering
-      \includesvg[width=0.85\textwidth]{app/mvvm}
-      \caption{\acrshort{mvvm} architectural pattern}
-      \label{mvvm}
+      \includesvg[width=0.85\textwidth]{app/angular-arch}
+      \caption{Angular component-based architectural pattern}
+      \label{angular-arch}
 \end{figure}
 
-\*{Model:} Corresponds to business logic encapsulated within services and components.
-Services encapsulate data retrieval and manipulation, and act as the bridge between
-the application and external data sources.
+\begin{itemize}
+      \item Components define views, which are sets of screen elements that Angular can choose among
+            and modify according to the program logic and data. Using event binding which lets the
+            application respond to user input in the target environment by updating application data, and
+            property binding which allows to interpolate values that are computed from the application
+            data into the \acrshort{html}.
+      \item Components use services, which provide specific functionality not directly related to views.
+            Service providers can be injected into components as dependencies, making our code modular,
+            reusable, and efficient.
+\end{itemize}
 
-\paragraph*{View:} Corresponds to the HTML templates in Angular. Templates define the structure and
-appearance of the user interface. Angular's binding mechanisms (property binding, event binding,
-and two-way binding) facilitate the synchronization between the model (data) and the view (UI).
 
-\paragraph*{ViewModel:} Is represented by the component class. The component class contains
-the presentation logic, handling user interactions, processing data, and managing the application's state.
-It orchestrates the communication between the model and the view, ensuring that changes in one are
-reflected appropriately in the other.
+
+\noindent Modules, components and services are classes that use decorators. These decorators mark their type
+and provide metadata that tells Angular how to use them.
+
+\begin{itemize}
+      \item The metadata for a component class associates it with a template that defines a view.
+            A template combines ordinary \acrshort*{html} with Angular directives and binding markup that allow
+            Angular to modify the \acrshort*{html} before rendering it for display.
+      \item The metadata for a service class provides the information Angular needs to make it available
+            to components through dependency injection.
+\end{itemize}
+
+An application's components typically define many views, arranged hierarchically. Angular provides the
+\texttt{Router} service to help you define navigation paths among views. The router provides sophisticated
+in-browser navigational capabilities.
 
 \subsubsection{Database}
 Selecting the appropriate database is a pivotal decision in our system design. After careful consideration,
@@ -469,8 +491,8 @@ reliability, flexibility, and support of open technical standards. PostgreSQL co
 aimed to help developers build applications and help managing higher data loads.
 
 \phantomsection
-\section*{Summary}
-\addcontentsline{toc}{section}{Summary}
+\section*{Conclusion}
+\addcontentsline{toc}{section}{Conclusion}
 In this chapter we laid the groundwork for the project by comprehensively gathering and analyzing
 the requirements. By identifying end-users, defining functional and non-functional requirements,
 and creating a clear specification through use case diagrams, elaborating the product backlog, planning

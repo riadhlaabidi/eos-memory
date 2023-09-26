@@ -1,4 +1,5 @@
 \usepackage[english]{babel}
+\usepackage{pdfpages}
 
 \usepackage[
   top=2.5cm,
@@ -8,7 +9,6 @@
   % showframe
 ]{geometry}
 
-
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhead{} % clear all header fields
@@ -16,14 +16,12 @@
 \fancyfoot{} % clear all footer fields
 \fancyfoot[C]{\thepage}
 
-
 \usepackage{csquotes}
 \usepackage{graphicx} % Include figure files
 \usepackage{svg}
 \usepackage{emptypage}
 
 \usepackage{pdflscape} % change page orientation
-
 
 \usepackage{titlesec}
 \usepackage{hyperref}  % contents hyperlinks setup
@@ -51,7 +49,7 @@
 
 \usepackage[skip=20pt plus1pt, indent=30pt]{parskip}
 
-\usepackage{biblatex}
+\usepackage[sorting=none]{biblatex}
 \addbibresource{references.bib}
 \usepackage[]{tocbibind} % add bibliography, contents, tables to table of contents
 

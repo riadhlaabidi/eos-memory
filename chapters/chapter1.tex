@@ -49,15 +49,38 @@ heart of customers' business.
 \end{table}
 
 \section{Project overview}
-A notification center is a system that allows businesses to send and manage notifications
-to their customers or employees. The value proposition of a notification center is that it
-can help businesses communicate with their stakeholders more efficiently and
+A notification is a message, email, icon, or another symbol that appears when an application wants
+a user to pay attention to something. These notifications can take various forms, including
+text-based messages which are plain text messages suitable for conveying essential information
+concisely, and image notifications which incorporate graphics, pictures, effective for
+providing visual instructions.
+
+In modern communication strategies, different types of notifications serve specific purposes in
+reaching users efficiently. Common notification types are:
+
+\begin{itemize}
+      \item \textbf{Email notifications}: These are messages sent electronically via email, ideal for
+            asynchronous communication, and delivering detailed updates and information.
+      \item \textbf{Push notifications}: These are short messages that appears as a pop-up on a desktop
+            browser, or a mobile home screen. Push notifications display text and rich media, like images or
+            buttons, which enable a user to take a specific action. Ideal for providing instant updates and
+            information directly to users' screens.
+      \item \textbf{SMS Notifications}: These are limited-length concise text messages sent to mobile
+            phones, which are suitable for delivering direct and often time-sensitive messages.
+      \item \textbf{Chat Notifications}: These are text and rich-media alerts within messaging apps or
+            chat platforms. They enable interactive communication, allowing businesses to engage in quick
+            and convenient exchanges with customers.
+\end{itemize}
+
+A notification center is a system that allows businesses to send and manage these types of
+notifications to their customers or employees. The value proposition of a notification center
+is that it can help businesses communicate with their stakeholders more efficiently and
 effectively, leading to increased engagement and productivity.
 
-In the retail sector as an example, a company could use the notification center to send SMS, email, push or chat alerts about product
-recalls, special promotions, or other important information to customers.  By using a notification center, businesses can
-improve communication with their customers and ensure that important information is quickly and
-effectively distributed.
+In the retail sector as an example, a company could use the notification center to send SMS, email, push
+or chat alerts about product recalls, special promotions, or other important information to customers.
+By using a notification center, businesses can improve communication with their customers and ensure
+that important information is quickly and effectively distributed.
 
 \section{Problem assessment and challenges}
 Implementing a notification center system in the retail sector poses certain challenges and requires
@@ -84,8 +107,6 @@ evaluation:
             center system.
 \end{itemize}
 
-\raggedbottom
-
 \section{Competitor benchmarking}
 In this section, we will evaluate and compare existing notification delivery solutions.
 By examining the features, functionalities, and performance of these solutions, we aim to identify
@@ -96,29 +117,29 @@ During our search for similar existing functionalities, we have carefully evalua
 and identified the three most closely aligned with our specific needs.
 We will present an overview of these chosen solutions, highlighting their key characteristics and capabilities.
 
-\subsubsection{OneSignal}
+\subsubsection{OneSignal \cite{onesignal}}
 OneSignal is a popular notification service that supports multiple platforms including iOS, Android, and web.
 OneSignal offers a wide range of features, including segmenting users based on custom attributes, A/B testing,
 automation, and personalization. OneSignal also provides real-time analytics and delivery reports, allowing
-tracking and optimization of notification campaigns.
+tracking and optimization of notification campaigns. \\
 
 \begin{figure}[hbt!]
       \centering
       \includegraphics[width=0.8\textwidth]{benchmark/onesignal}
-      \caption{OneSignal Homepage \cite{onesignal}}
+      \caption{OneSignal homepage}
 \end{figure}
 
-\subsubsection{Pusher}
+\subsubsection{Pusher \cite{pusher}}
 Pusher is a cloud-based notification service that provides real-time messaging for mobile and web applications.
 It supports push notifications, in-app notifications, and allows integration with other services and platforms. \\
 
 \begin{figure}[hbt!]
       \centering
       \includegraphics[width=0.8\textwidth]{benchmark/pusher}
-      \caption{Pusher Homepage \cite{pusher}}
+      \caption{Pusher homepage}
 \end{figure}
 
-\subsubsection{Amazon SNS}
+\subsubsection{Amazon SNS \cite{aws-sns}}
 Amazon SNS (Simple Notification Service) is a fully managed messaging service provided by Amazon Web
 Services (AWS) that enables you to send messages or notifications to a variety of distributed endpoints
 or clients. \\
@@ -126,10 +147,10 @@ or clients. \\
 \begin{figure}[hbt!]
       \centering
       \includegraphics[width=0.8\textwidth]{benchmark/amazonsns}
-      \caption{Amazon SNS Service Homepage \cite{aws-sns}}
+      \caption{Amazon SNS service homepage}
 \end{figure}
 
-\subsection{Comparison}
+\subsection{Comparison of existing solutions}
 We will conduct a comprehensive analysis of the selected existing solutions.
 By thoroughly examining their functionalities, strengths, and weaknesses, we aim to gain valuable insights
 into areas where improvements can be made to enhance user experience, streamline processes, and deliver
@@ -147,15 +168,18 @@ relevant and aligned with the Convergence project requirements:
             criterias defined by the business requirements.
       \item \textbf{C4: Customization:}  The ability to customize notifications content for targeted users accordingly.
       \item \textbf{C5: Analytics:} The ability to track different metrics during the delivery process
-            in order to inform businesses about the effectiveness of notification campaings and improve user engagement.
+            in order to inform businesses about the effectiveness of notification campaings.
       \item \textbf{C6: Cost:} Charge per sent notifications for a larger user base and high notification volume.
       \item \textbf{C7: Ease of use:} The ability to easily setup and configure the different steps of the notification
             delivery process for non technical users.
 \end{itemize}
 
+\noindent The table \ref{comparison} describes our findings comparing the selected existing solutions.
+
 \begin{table}[hbt!]
       \centering
       \caption{Comparison table}
+      \label{comparison}
       \begin{tabularx}{\textwidth}{ |
                   >{\raggedright\arraybackslash} X |
                   >{\raggedright\arraybackslash} X |
@@ -197,7 +221,9 @@ with their customers and employees.
 The proposed notification center will incorporate multi-channel delivery options, advanced user
 segmentation, and personalized messaging capabilities. It will also prioritize customization and
 prioritization, enabling businesses to tailor notifications based on audience preferences and deliver
-essential information effectively.\\
+essential information effectively.
+
+\noindent The figure \ref{solution} illustrates the main idea for our proposed solution.
 
 \begin{figure}[hbt!]
       \centering
@@ -284,8 +310,8 @@ Thus, everyone inspecting them has the same basis for adaptation.
 \raggedbottom
 
 \phantomsection
-\section*{Summary}
-\addcontentsline{toc}{section}{Summary}
+\section*{Conclusion}
+\addcontentsline{toc}{section}{Conclusion}
 To summarize our findings in this chapter, we introduced the host organization, then outlined the problem
 assessment and identified its related challenges. Next we analyzed competitors to get a grasp of the major
 pain points that we are going to tackle, and finally we presented the adopted agile approach in our team
