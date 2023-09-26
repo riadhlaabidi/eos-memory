@@ -312,7 +312,6 @@ different tiers. They are physically separated.
 
 % TODO: Illustraion if needed for components
 
-
 \subsection{Technology stack and framework selection}
 In this part, we will delve into the technology stack and frameworks adopted for our project.
 This includes considerations for the back end, front end, and database components. By specifying
@@ -381,8 +380,7 @@ below or above it as shown in the figure \ref{layers}.
 \begin{enumerate}
       \item \textbf{Presentation Layer}: The top layer of the spring boot architecture. It consists of views.
             It handles the \acrshort{http} requests and performs authentication. It is responsible for converting the \acrfull{json}
-            field’s parameter to java objects and vice-versa. Once it performs the authentication of the request
-            it passes it to the next layer.
+            field’s parameter to java objects and vice-versa. Then passes the request to the next layer.
       \item \textbf{Business Layer}: Contains all the business logic. It consists of multiple service classes
             and is responsible for validation and authorization.
       \item \textbf{Persistence Layer}: Implements all the database storage logic and it is responsible for
@@ -432,30 +430,46 @@ includes:
 
 
 \paragraph{Angular architectural pattern} \mbox{} \newline \newline
-Angular follows a component-based architectural pattern that aligns closely with the
-\acrfull{mvvm} pattern, a design paradigm that separates concerns in frontend
-development. While Angular's terminologies don't exactly match \acrshort{mvvm},
-the concepts map as follows: \\
+The architecture of an Angular application relies on certain fundamental concepts. The basic building
+blocks of the Angular framework are Angular components that are organized into \texttt{NgModules}.
+\texttt{NgModules} collect related code into functional sets which define an Angular application.
+An application always has at least a root module that enables bootstrapping, and typically has many
+more feature modules. \\ \newline
 
 \begin{figure}[hbt!]
       \centering
-      \includesvg[width=0.85\textwidth]{app/mvvm}
-      \caption{\acrshort{mvvm} architectural pattern}
-      \label{mvvm}
+      \includesvg[width=0.85\textwidth]{app/angular-arch}
+      \caption{Angular component-based architectural pattern}
+      \label{angular-arch}
 \end{figure}
 
-\*{Model:} Corresponds to business logic encapsulated within services and components.
-Services encapsulate data retrieval and manipulation, and act as the bridge between
-the application and external data sources.
+\begin{itemize}
+      \item Components define views, which are sets of screen elements that Angular can choose among
+            and modify according to the program logic and data. Using event binding which lets the
+            application respond to user input in the target environment by updating application data, and
+            property binding which allows to interpolate values that are computed from the application
+            data into the \acrshort{html}.
+      \item Components use services, which provide specific functionality not directly related to views.
+            Service providers can be injected into components as dependencies, making our code modular,
+            reusable, and efficient.
+\end{itemize}
 
-\paragraph*{View:} Corresponds to the HTML templates in Angular. Templates define the structure and
-appearance of the user interface. Angular's binding mechanisms (property binding, event binding,
-and two-way binding) facilitate the synchronization between the model (data) and the view (UI).
 
-\paragraph*{ViewModel:} Is represented by the component class. The component class contains
-the presentation logic, handling user interactions, processing data, and managing the application's state.
-It orchestrates the communication between the model and the view, ensuring that changes in one are
-reflected appropriately in the other.
+
+\noindent Modules, components and services are classes that use decorators. These decorators mark their type
+and provide metadata that tells Angular how to use them.
+
+\begin{itemize}
+      \item The metadata for a component class associates it with a template that defines a view.
+            A template combines ordinary \acrshort*{html} with Angular directives and binding markup that allow
+            Angular to modify the \acrshort*{html} before rendering it for display.
+      \item The metadata for a service class provides the information Angular needs to make it available
+            to components through dependency injection.
+\end{itemize}
+
+An application's components typically define many views, arranged hierarchically. Angular provides the
+\texttt{Router} service to help you define navigation paths among views. The router provides sophisticated
+in-browser navigational capabilities.
 
 \subsubsection{Database}
 Selecting the appropriate database is a pivotal decision in our system design. After careful consideration,
@@ -477,8 +491,8 @@ reliability, flexibility, and support of open technical standards. PostgreSQL co
 aimed to help developers build applications and help managing higher data loads.
 
 \phantomsection
-\section*{Summary}
-\addcontentsline{toc}{section}{Summary}
+\section*{Conclusion}
+\addcontentsline{toc}{section}{Conclusion}
 In this chapter we laid the groundwork for the project by comprehensively gathering and analyzing
 the requirements. By identifying end-users, defining functional and non-functional requirements,
 and creating a clear specification through use case diagrams, elaborating the product backlog, planning

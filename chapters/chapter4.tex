@@ -416,6 +416,55 @@ a response back to the cient indicating that the notification trigger has been c
 
 
 \subsubsection{Detailed design}
+In our solution, notification sending triggers are pivotal components that enable us to initiate
+communication with our users. In this section, we chose to further model the notification trigger
+management feature, as this is at the heart of this release and links all the parts we created so far.
+
+Notification triggers represent various events or conditions that warrant sending notifications,
+such as updates, reminders, or alerts. To manage this process efficiently, we've chosen to leverage
+Quartz, a highly versatile job scheduling library in the world of software development.
+Its flexibility and reliability make it an excellent choice for automating tasks such as sending
+notifications at specific times or intervals. By integrating Quartz into our system, we can ensure
+precise and efficient scheduling of this kind of jobs.
+
+In order to make use of Quartz in our project, we have introduced two essential configuration classes:
+\texttt{AsyncConfiguration} and \texttt{QuartzSchedulerConfiguration}, these classes will enable
+us to tune both the asynchronous job running configurations, and the Quartz
+scheduling configurations in our application.
+
+For the notification sending task that the trigger relies on, we have introduced the
+\texttt{BulkNotificationSendingJob} class that implements the Quartz \texttt{Job} interface,
+which is used to define the task executed when a Quartz trigger fires. This interface allows us
+to encapsulate the logic for sending batches of notifications to an audience and integrate it seamlessly
+into the Quartz scheduler's workflow.
+
+We have also introduced the \texttt{BulkNotificationSchedulingService} interface to handle the scheduling aspect of
+our feature. This interface exposes methods that enable the scheduling of triggers based on the
+chosen delivery type, whether it's a one-time occurrence or a recurring event. This design provides
+a clear and flexible way to manage the scheduling of notification triggers.
+
+To keep track of our triggers, we have used the \texttt{NotificationTriggerListener} class,
+which implements the \texttt{TriggerListener} interface from Quartz. This implementation is designed to
+facilitate the tracking of trigger status, enabling us to effectively manage trigger completion and
+respond in case of failures. The \texttt{TriggerListener} interface is a key component of Quartz,
+and it allows us to handle various trigger-related events, ensuring that our notification triggers are
+monitored, managed, and responded to appropriately throughout their lifecycle.
+
+
+\noindent The figure \ref{detailed-2} represents the detailed class diagram for implementing notification
+trigger management.
+
+
+\begin{landscape}
+    \begin{figure}[hbt!]
+        \centering
+        \includesvg[width=1.55\textwidth]{diagrams/class/detailed-2}
+        \caption{Detailed class diagram}
+        \label{detailed-2}
+    \end{figure}
+\end{landscape}
+
+
 
 \section{Implementation}
 Building upon the foundation laid in our first release, we showcase the evolution and refinement of
@@ -467,10 +516,10 @@ as shown for the older triggers in the figure \ref{ss-triggers}.
 
 
 \phantomsection
-\section*{Summary}
+\section*{Conclusion}
 
 
-\addcontentsline{toc}{section}{Summary}
+\addcontentsline{toc}{section}{Conclusion}
 In this chapter, we focused on the second release of our project, which centers around improving
 the notification sending processs. We started by specifying requirements related to this release,
 and delve into crucial design aspects to transform those requirements into actual implementations.
