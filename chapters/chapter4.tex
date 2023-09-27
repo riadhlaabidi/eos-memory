@@ -169,11 +169,63 @@ we find most significant to drive the enhancements planned for this release.
 \section{Design}
 Building upon the insights gained from the initial design, this phase focuses on refining and expanding our
 software's architecture. In this section, we will explore the key considerations, decisions, and advancements
-made during this second release.
+made during this release.
 
-\subsection{Database design}
-In this section, We will elaborate on the structure and organization of our database from the first release,
-defining new tables and relationships for the implementation of this second release of our product.
+\subsection{Static modeling}
+The static modeling phase continues to be instrumental in shaping our software system's core structure.
+Building upon our previous work, we extend our focus on defining the system's architecture and refining
+data semantics to align seamlessly with our evolving requirements.
+
+\subsubsection{Domain model}
+We have expanded our design to include five pivotal classes. These classes play a fundamental role in
+implementing the user stories related to notification management. They encompass critical aspects such
+as notification topics, templates, triggers, subscribers' notification preferences, and the core
+functionality of notifications—both for sending and maintaining a historical record. This section delves
+into the structure and relationships of these classes. \\
+
+\begin{longtable}{ | m{0.3\textwidth} | m{0.645\textwidth} | }
+    \caption{Classes description}                                                                                                               \\
+    \hline
+    \textbf{Class name}    & \textbf{Description}                                                                                               \\
+    \hline
+    \endfirsthead
+    \hline
+    \textbf{Class name}    & \textbf{Description}                                                                                               \\
+    \hline
+    \endhead
+    \endfoot
+    \hline
+    \endlastfoot
+    Topic                  & This class models a notification topic which is used to categorize and prioritize notification delivery            \\
+    \hline
+    Template               & This class models a notification template which is used to create dynamic notifications content and configurations \\
+    \hline
+    NotificationTrigger    & This class models a delivery trigger for sending notifications at a specific date and time                         \\
+    \hline
+    NotificationPreference & This class models a notification user preference for receiving notifications from the center                       \\
+    \hline
+    Notification           & This class models each single notification that is going to be sent out to target users                            \\
+    \hline
+\end{longtable}
+
+\noindent For these new classes, we have outlined the following associations:
+
+\begin{itemize}
+    \item A template can have exactly one topic.
+    \item A template is created by exactly one user, and one user can create zero or more templates.
+    \item A trigger can have exactly one template.
+    \item A trigger can have exactly one audience.
+    \item A notification preference is related to exactly one notification user,
+          but a notification user can have zero or more preferences.
+    \item A notification preference sets preference for only one topic, and a topic can have exactly one notification preference.
+    \item A notification user can set zero or more notification preferences, and a notification preference
+          belongs to exactly one notification user.
+    \item A notification is made from one template, and a template can be used to send zero or more notifications.
+    \item A notification is sent to only one subscription, and a subscription can receive zero or many notifications.
+\end{itemize}
+
+\noindent In the figure \ref{r2-class} we illustrate the extention of our class diagram, we highlighted
+newly added classes among others for a better readability.
 
 \subsubsection{Data dictionary}
 In the table \ref{tab-r2dd}, we provide a comprehensive overview of the essential data elements
@@ -183,9 +235,18 @@ that will define our entities and relationships for the second release.
 Building upon the foundation laid in our initial logical data model, we enter a phase of refinement and
 expansion. In this section, we present the second iteration of our logical data model, which encapsulates
 the newly added entities during this second release. This updated data model will offer
-deeper insights into the structure and relationships of our data entities for the whole solution.
+deeper insights into the structure and relationships of our data entities for the complete solution.
 
 \noindent The figure \ref{r2-erd} illustrates the updated entity-relationship diagram for this second release.
+
+\begin{landscape}
+    \begin{figure}[hbt!]
+        \centering
+        \includesvg[width=1.55\textwidth]{diagrams/class/r2-class}
+        \caption{Class diagram of the second release}
+        \label{r2-class}
+    \end{figure}
+\end{landscape}
 
 \begin{landscape}
     \begin{longtable}{ | m{0.225\textwidth} | m{0.28\textwidth} | m{0.55\textwidth} | m{0.15\textwidth} | m{0.2\textwidth} | }
@@ -293,72 +354,8 @@ deeper insights into the structure and relationships of our data entities for th
     \end{figure}
 \end{landscape}
 
-\subsection{Software design}
-Similar to our approach in the initial release, this software design section involves three key aspects:
-static modeling, dynamic modeling, and detailed design. All tailored to meet the unique requirements and
-enhancements of the second release.
 
-\subsubsection{Static modeling}
-We have expanded our design to include five pivotal classes. These classes play a fundamental role in
-implementing the user stories related to notification management. They encompass critical aspects such
-as notification topics, templates, triggers, subscribers' notification preferences, and the core functionality of
-notifications—both for sending and maintaining a historical record. This section delves into the structure
-and relationships of these classes. \\
-
-\begin{longtable}{ | m{0.3\textwidth} | m{0.645\textwidth} | }
-    \caption{Classes description}                                                                                                               \\
-    \hline
-    \textbf{Class name}    & \textbf{Description}                                                                                               \\
-    \hline
-    \endfirsthead
-    \hline
-    \textbf{Class name}    & \textbf{Description}                                                                                               \\
-    \hline
-    \endhead
-    \endfoot
-    \hline
-    \endlastfoot
-    Topic                  & This class models a notification topic which is used to categorize and prioritize notification delivery            \\
-    \hline
-    Template               & This class models a notification template which is used to create dynamic notifications content and configurations \\
-    \hline
-    NotificationTrigger    & This class models a delivery trigger for sending notifications at a specific date and time                         \\
-    \hline
-    NotificationPreference & This class models a notification user preference for receiving notifications from the center                       \\
-    \hline
-    Notification           & This class models each single notification that is going to be sent out to target users                            \\
-    \hline
-\end{longtable}
-
-\noindent For these new classes, we have outlined the following associations:
-
-\begin{itemize}
-    \item A template can have exactly one topic.
-    \item A template is created by exactly one user, and one user can create zero or more templates.
-    \item A trigger can have exactly one template.
-    \item A trigger can have exactly one audience.
-    \item A notification preference is related to exactly one notification user,
-          but a notification user can have zero or more preferences.
-    \item A notification preference sets preference for only one topic, and a topic can have exactly one notification preference.
-    \item A notification user can set zero or more notification preferences, and a notification preference
-          belongs to exactly one notification user.
-    \item A notification is made from one template, and a template can be used to send zero or more notifications.
-    \item A notification is sent to only one subscription, and a subscription can receive zero or many notifications.
-\end{itemize}
-
-\noindent In the figure \ref{r2-class} we illustrate the extention of our class diagram, we highlighted
-newly added classes among others for a better readability.
-
-\begin{landscape}
-    \begin{figure}[hbt!]
-        \centering
-        \includesvg[width=1.55\textwidth]{diagrams/class/r2-class}
-        \caption{Class diagram of the second release}
-        \label{r2-class}
-    \end{figure}
-\end{landscape}
-
-\subsubsection{Dynamic modeling}
+\subsection{Dynamic modeling}
 In the subsequent section, we revisit the dynamic facets of our software solution through further
 representation of the interactions and communication behaviors of components and actors within our system.
 
@@ -366,7 +363,7 @@ For this release we are going to focus on describing the process of creating not
 and triggers, as we found those two functionalities to be the most important steps in
 order to be able to send notifications through our platform.
 
-\paragraph{Sequence diagram for creating a template} \mbox{} \newline \newline
+\subsubsection{Sequence diagram for creating a template}
 Agents can create templates by selecting the notification type and filling the required information. Agents
 can test templates before saving, in this case a REST request is made to the server which calls the service
 layer to configure and send the test notification.
@@ -378,7 +375,7 @@ to the client indicating the success or failure of the operation.
 
 \noindent The figure \ref{seq-create-template} illustrates the sequence diagram for creating a notification template.
 
-\paragraph{Sequence diagram for creating a trigger} \mbox{} \newline \newline
+\subsubsection{Sequence diagram for creating a trigger}
 In order to create a trigger, an administrator/agent selects a specific notification template, chooses a target
 audience, specifies a delivery type (one-time or recurring), sets the frequency, and defines a start and end
 date for recurring deliveries. Then the update component processes the user's input and formulates, through
@@ -415,7 +412,7 @@ a response back to the cient indicating that the notification trigger has been c
 \end{landscape}
 
 
-\subsubsection{Detailed design}
+\subsection{Detailed design}
 In our solution, notification sending triggers are pivotal components that enable us to initiate
 communication with our users. In this section, we chose to further model the notification trigger
 management feature, as this is at the heart of this release and links all the parts we created so far.
