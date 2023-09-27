@@ -211,16 +211,97 @@ team and that each user story is comprehensively documented. This table will inc
 \section{Design}
 The design phase of software development is a critical step in the software development life cycle.
 It is the process of transforming the customer requirements into a detailed plan for how the software
-will be implemented. In this section we are going to focus on the design aspects related to the database
-and the software.
+will be implemented. In this section we are going to focus on the static and dynamic modeling of the system,
+encompassing both the database and software design aspects, followed by an in-depth exploration of
+these aspects.
 
-\subsection{Database design}
-In this section, We will discuss the structure and organization of our database, defining tables and relationships
-between entities for efficient data management within our solution.
+\subsection{Static modeling}
+Static modeling serves as the blueprint that outlines how the various components of a software system
+interact, without considering their specific actions over time. In this section, we are going to focus
+on statically designing our system by first outlining it's architecture in the domain model section, then
+by semantically modeling the data to be mapped to a database in the subsequent sections.
+
+\subsubsection{Domain model}
+The domain model serves as the cornerstone of our software architecture, as it delineates the fundamental
+building blocks of the system. In this initial release, we present the class diagram, a visual representation
+of the key domain objects and their relationships. This diagram encapsulates our first steps towards modeling
+the essence of the problem space we aim to address.
+
+\noindent The table \ref{class-desc} provides a description of each class being part of the first release. \\
+
+\begin{longtable}{ | m{0.3\textwidth} | m{0.645\textwidth} | }
+    \caption{Classes description} \label{class-desc}                                                                                            \\
+    \hline
+    \textbf{Class name}      & \textbf{Description}                                                                                             \\
+    \hline
+    \endfirsthead
+    \hline
+    \textbf{Class name}      & \textbf{Description}                                                                                             \\
+    \hline
+    \endhead
+    \endfoot
+    \hline
+    \endlastfoot
+    User                     & This class represents the user entity in our solution                                                            \\
+    \hline
+    Authority                & This class represents roles which are going to be assigned to users                                              \\
+    \hline
+    NotificationUser         & This class represents the target customers for receiving notifications                                           \\
+    \hline
+    Channel                  & This class represents the notification channels that are going to send notifications through to our target users \\
+    \hline
+    ServiceProvider          & This class models the credentials of the third party service to integrate with the channel                       \\
+    \hline
+    NotificationSubscription & This class models a user notification subscription to a specific notification channel                            \\
+    \hline
+    Audience                 & This class models a segment of notification user subscriptions selected based on a criteria                      \\
+    \hline
+    Criteria                 & This class models a selection criteria for an audience, it represents a filter, an operator, and a value         \\
+\end{longtable}
+
+\noindent In order to establish a clear understanding of the structural relationships within our software system,
+we defined the following key associations:
+
+\begin{itemize}
+    \item A user can have many authorities, and an authority could be assigned to one or many users.
+    \item A user can create zero or more channels, but a channel is created by exactly one user.
+    \item A user can create zero or more audiences, but an audience is created by exactly one user.
+    \item A notification user can have zero or many subscriptions, but a notification subscription
+          belongs to exactly one notification user.
+    \item A channel can have exactly one service provider.
+    \item A channel can have zero or more subscriptions, but a subsciption is associated with exactly one channel.
+    \item An audience can have one or more selection criteria, but a selection criteria is for exactly one audience.
+\end{itemize}
+
+\noindent The figure \ref{r1-class} illustrates the class diagram for our first release.
+
+\noindent We have taken an approach to separate the \texttt{User} class from the
+\texttt{NotificationUser} class. This separation is driven by two key considerations:
+
+\begin{itemize}
+    \item First, the \texttt{User} class (generated by JHipster) is tightly integrated into our
+          security and authentication system. Modifying this class directly is not recommended
+          due to the potential security and compatibility issues. Therefore, we have chosen not
+          to alter the existing \texttt{User} class using inheritance.
+
+    \item Second, the \texttt{User} class is primarily responsible for handling user authentication and
+          security-related aspects, ensuring the integrity of our application's security model. In contrast,
+          the \texttt{NotificationUser} class is designed exclusively for managing notification-related data,
+          such as subscriptions and audiences. By keeping these classes independent, we ensure that
+          \texttt{NotificationUser} entities remain independent from the authentication system and don't
+          have any unintended access to our platform. \\
+\end{itemize}
+
+\begin{figure}[hbt!]
+    \centering
+    \includesvg[width=\textwidth]{diagrams/class/r1-class}
+    \caption{The class diagram of the first release}
+    \label{r1-class}
+\end{figure}
 
 \subsubsection{Data dictionary}
-
-First, we will define a data dictionary that describes the fields associated with each data element,
+In order to efficiently manage data in our solution, our focus shifts to data modeling. For this purpose
+will first define a data dictionary that describes the fields associated with each data element,
 indicating their types and constraints as shown in the table \ref{tab-r1dd}.
 
 \begin{landscape}
@@ -351,7 +432,6 @@ of creating a logical data model is to develop a highly technical map of underly
 
 \noindent The figure \ref{r1-erd}  illustrates the entity-relationship diagram for our first release. \\
 
-
 \begin{figure}[hbt!]
     \centering
     \includesvg[width=\textwidth]{diagrams/database/r1-erd}
@@ -359,100 +439,15 @@ of creating a logical data model is to develop a highly technical map of underly
     \label{r1-erd}
 \end{figure}
 
-\subsection{Software design}
-This phase is where we transition from defining the data structure to crafting the software's architecture
-and behavior. The software design section encompasses three crucial aspects: static modeling, dynamic modeling,
-and detailed design. Each of these facets plays a pivotal role in shaping a well-structured and efficient
-software solution. In this section, we will explore these components in-depth.
 
-\subsubsection{Static modeling}
-Static modeling serves as the blueprint that outlines how the various components of a software system
-interact, without considering their specific actions over time. One of the fundamental tools we rely upon
-to statically model our software systems is the class diagram. A class diagram provides a high-level overview
-of the system's static structure, attributes, methods, and associations between different classes.
-
-\noindent The following table provides a description of each class being part of the first release design.
-
-\begin{longtable}{ | m{0.3\textwidth} | m{0.645\textwidth} | }
-    \caption{Classes description}                                                                                                               \\
-    \hline
-    \textbf{Class name}      & \textbf{Description}                                                                                             \\
-    \hline
-    \endfirsthead
-    \hline
-    \textbf{Class name}      & \textbf{Description}                                                                                             \\
-    \hline
-    \endhead
-    \endfoot
-    \hline
-    \endlastfoot
-    User                     & This class represents the user entity in our solution                                                            \\
-    \hline
-    Authority                & This class represents roles which are going to be assigned to users                                              \\
-    \hline
-    NotificationUser         & This class represents the target customers for receiving notifications                                           \\
-    \hline
-    Channel                  & This class represents the notification channels that are going to send notifications through to our target users \\
-    \hline
-    ServiceProvider          & This class models the credentials of the third party service to integrate with the channel                       \\
-    \hline
-    NotificationSubscription & This class models a user notification subscription to a specific notification channel                            \\
-    \hline
-    Audience                 & This class models a segment of notification user subscriptions selected based on a criteria                      \\
-    \hline
-    Criteria                 & This class models a selection criteria for an audience, it represents a filter, an operator, and a value         \\
-\end{longtable}
-
-\noindent In order to establish a clear understanding of the structural relationships within our software system,
-we defined the following key associations:
-
-\begin{itemize}
-    \item A user can have many authorities, and an authority could be assigned to one or many users.
-    \item A user can create zero or more channels, but a channel is created by exactly one user.
-    \item A user can create zero or more audiences, but an audience is created by exactly one user.
-    \item A notification user can have zero or many subscriptions, but a notification subscription
-          belongs to exactly one notification user.
-    \item A channel can have exactly one service provider.
-    \item A channel can have zero or more subscriptions, but a subsciption is associated with exactly one channel.
-    \item An audience can have one or more selection criteria, but a selection criteria is for exactly one audience.
-\end{itemize}
-
-\noindent The figure \ref{r1-class} illustrates the class diagram for our first release. \\
-
-\begin{figure}[hbt!]
-    \centering
-    \includesvg[width=\textwidth]{diagrams/class/r1-class}
-    \caption{The class diagram of the first release}
-    \label{r1-class}
-\end{figure}
-
-\noindent We have taken an approach to separate the \texttt{User} class from the
-\texttt{NotificationUser} class. This separation is driven by two key considerations:
-
-\begin{itemize}
-    \item First, the \texttt{User} class (generated by JHipster) is tightly integrated into our
-          security and authentication system. Modifying this class directly is not recommended
-          due to the potential security and compatibility issues. Therefore, we have chosen not
-          to alter the existing \texttt{User} class using inheritance.
-
-    \item Second, the \texttt{User} class is primarily responsible for handling user authentication and
-          security-related aspects, ensuring the integrity of our application's security model. In contrast,
-          the \texttt{NotificationUser} class is designed exclusively for managing notification-related data,
-          such as subscriptions and audiences. By keeping these classes independent, we ensure that
-          \texttt{NotificationUser} entities remain independent from the authentication system and don't
-          have any unintended access to our platform.
-\end{itemize}
-
-
-\subsubsection{Dynamic modeling}
+\subsection{Dynamic modeling}
 In this section, we delve into the dynamic aspects of our software solution by employing \acrshort{uml}
 sequence diagrams. These diagrams provide a visual representation of the interactions and communication
 patterns among various components and actors within our system. As we explore these sequences,
 we aim to shed light on the flow of information, the order of operations, and the coordination
 between different elements in our software architecture.
 
-
-\paragraph{Sequence diagram for Creating a channel} \mbox{} \newline \newline
+\subsubsection{Sequence diagram for creating a channel}
 First, we outline the process of creating notification channels, a critical functionality
 designed to integrate external notification delivery services within our solution.
 
@@ -464,7 +459,7 @@ or the credentials are invalid which cancels the request and asks the administra
 
 \noindent The following figure \ref{seq-create-channel} illustrates the sequence diagram for creating a channel.
 
-\paragraph{Sequence diagram for creating an audience} \mbox{} \newline \newline
+\subsubsection{Sequence diagram for creating an audience}
 For the user segmentation feature, both administrators and agents have the ability to create segments
 based on specific criteria.  This essential functionality enables them to precisely target user subscriptions
 with relevant notifications.
@@ -495,7 +490,7 @@ to keep users informed about the segments they are creating.
     \end{figure}
 \end{landscape}
 
-\subsubsection{Detailed Design}
+\subsection{Detailed Design}
 In this section we provide an in-depth look at various aspects of the detailed design process.
 This phase is a critical step that follows the high-level architecture and lays the foundation
 for the actual implementation of the system. It involves breaking down the system into smaller
@@ -636,7 +631,6 @@ to create complex objects filtering.
 \section{Implementation}
 In the following section, we embark on a visual journey through a series of captured screenshots to provide
 an in-depth glimpse into the user interface and functionality of our application.
-the implementation of our application.
 
 \subsection{Authentication}
 The figure \ref{ss-signin} showcases the live implementation of the sign-in page, where users can provide
@@ -678,7 +672,20 @@ agent or administrator using the "Create a new agent" button.
 \end{figure}
 
 \subsection{Channels management}
-The figure \ref{ss-channels} illustrates the final result of the implementation of channels management. The table
+The figure \ref{ss-create-channel} shows the result of implemening the channel creation feature.
+In this exmaple we are going to create an SMS channel using the Twilio service provider. We configured
+the provider with the necessary credentials retrieved from the Twilio account. We chose to use a phone number
+instead of a specific Twilio messaging service in the ``from" field, this is the business's phone number
+which is displayed to target users.
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=\textwidth]{app/create-channel}
+    \caption{Channels creation page}
+    \label{ss-create-channel}
+\end{figure}
+
+The figure \ref{ss-channels} illustrates the final result of the implementation of channels management page. The table
 lists information about created channels for every service provider that can integrate with our solution. The
 administrator can edit or delete these channels using the action buttons.
 \begin{figure}[hbt!]
